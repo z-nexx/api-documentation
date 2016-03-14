@@ -1,5 +1,7 @@
 ## Finance API
 
+Test environment:: https://finance-pa.izettletest.com
+
 ### Account balance
 `GET organizations/us/accounts/{accountTypeGroup}/balance`
 
