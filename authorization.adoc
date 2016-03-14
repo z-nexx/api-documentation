@@ -1,0 +1,80 @@
+## Authorization OAuth2 API
+### Ask the user to authorize the client
+**RFC 6749:** https://tools.ietf.org/html/rfc6749#section-4.1.1[4.1.1. Authorization Request]
+
+Once the partner is registered and has received a secret and client id (uuid) it can present the user with a link to authorize the partners access to the users data,
+this link is opened up in a web browser:
+```
+http://localhost:1130/authorize?response_type=code&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&scope=READ:FINANCE%20READ:PURCHASE
+```
+
+If the user doesn't have a valid SSO token cookie, the user is forced to login. When authenticated the
+user is presented with a screen where the partner info is displayed, along with the requested authorization scope.
+
+To allow the authorization, the user will invoke the authorization URL above with an extra query parameter `action=authorize`.
+```
+curl --write-out %{redirect_url} -s \
+-H 'Cookie: iz_sso=9c3375c9-fd1b-4fde-9743-6f3d2e475388' \
+'http://localhost:1130/authorize?response_type=code&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&scope=READ:FINANCE%20READ:PURCHASE&action=authorize&state=XFadwMEXCJGJUfD'
+```
+The server responds with a redirect to the redirect URI that the partner has provided, appended with the generated authorization code as a parameter `code`:
+```
+http://httpbin.org/get?code=4fa87ba8cc7f30e91ad2ab1ad21c1b3e&state=XFadwMEXCJGJUfD
+```
+
+#### The state parameter
+The `state` parameter is required for security reasons. You should set it to a random unique value for each request (a nonce), and then verify that the redirect URI contains the same value.
+
+### Retrieve access and refresh tokens
+**RFC 6749:** https://tools.ietf.org/html/rfc6749#section-4.1.3[4.1.3. Access Token Request]
+
+Once the client has received the authorization code in the redirect it can use this code to request the unique access and refresh tokens used when 
+accessing the APIs:
+
+
+```
+curl -s -d \
+'grant_type=authorization_code&redirect_uri=http%3A%2F%2Fhttpbin.com&code=4fa87ba8cc7f30e91ad2ab1ad21c1b3e&client_secret=7356b8a1-75ac-4336-970b-bef63cd219c1&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a' \
+-H'Content-Type: application/x-www-form-urlencoded' \
+'http://localhost:1130/token' | python -m json.tool
+```
+
+The response will contain both the access and refresh tokens:
+```json
+{
+    "access_token": "eyJraWQiOiIxNDQ0NzI3MTY0Njk4IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJpWmV0dGxlIiwiYXVkIjoiQVBJIiwiZXhwIjoxNDQ0ODI1MzI1LCJqdGkiOiJXeE1vXzFaNFJQMWQ5Mi10N2owUXBRIiwiaWF0IjoxNDQ0ODIzNTI1LCJuYmYiOjE0NDQ4MjM0MDUsInN1YiI6IlllemNseEJlVHBLUDBqNXRBdmdqWXciLCJzY29wZSI6ImFsbCJ9.O-mh4Wyt-ReS-5tH2YBN2CVh1-UnyMf2xoF6Qie3pa2YGZY_u2UTU2bp0KiGjmHHLgYI5c9N1F6s7Ze-KpAyH1WZHSW8mezt25qBLpvCgr4OFkRGY7QYVa-UhVXkQ0B_shviiwubenTNCGdQl9fJlJmElqb5SQl2Tl7sraKV4T1cp5dpPZmA7AeeMaEnooQ2STluF76AcRipMq9aCFzGKv-MrfNhpl6wUwhxaMXtF9SSr8emWf5MEoGfm1mjPpV6J6LmHQtkQN2VJLy81BIGiDGtS_dhvdPMyS2O3dDLTA-LJSA_q4ZdbEsEbomCyfMDvS6RE_mnI06lW8dYMQ7yZA",
+    "expires_in": 30,
+    "refresh_token": "07b0edfc-f557-4e52-a995-384288e2351e"
+}
+```
+
+### Request a new access token
+**RFC 6749:** https://tools.ietf.org/html/rfc6749#section-6[6. Refreshing an Access Token]
+
+The access token has a TTL of 30 minutes. Once it has expired the client needs to request a new access token using the refresh token:
+```
+curl -s -d \
+'grant_type=refresh_token&client_secret=7356b8a1-75ac-4336-970b-bef63cd219c1&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&refresh_token=07b0edfc-f557-4e52-a995-384288e2351e' \
+-H'Content-Type: application/x-www-form-urlencoded' \
+'http://localhost:1130/token' | python -m json.tool
+```
+
+The response has the same format as the request above:
+```json
+{
+    "access_token": "eyJraWQiOiIxNDQ0NzI3MTY0Njk4IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJpWmV0dGxlIiwiYXVkIjoiQVBJIiwiZXhwIjoxNDQ0ODI1NTk5LCJqdGkiOiJzRXlEQ2JOS1d1dWhqN2FadGxibnJnIiwiaWF0IjoxNDQ0ODIzNzk5LCJuYmYiOjE0NDQ4MjM2NzksInN1YiI6IlllemNseEJlVHBLUDBqNXRBdmdqWXciLCJzY29wZSI6ImFsbCJ9.RtbbSu68fMMGssQHIhdLF6Sa4nFeBkMDSQkDsVYxaKa0jMqd6i6Dl9W1C4XJdnNdNiuke6fG5dGGSB6yR6mx5qXJcEBl8bwUTp7r1jX3n9WbgXHQtwCiSx5J3wMrE3RIEGHqSeD0DkQDLaKLqlb12H1DUMK4wTFL3_KxtYqP_dEijOPtV9gN7EkZUIitWqMa3DOR2IqszldrcUXIVPkp_DRWtjvBSCsgglQFGgjyblpOQJM5CR64aD1CgyOSE6JAMWHBhbB7j7gB6DALHLh82twU9camEkCFKKra4n1Zj6mHF9DMSwccH7lpdjjSKPEUujyKCaLQRn82AH0Q8vSlKg",
+    "expires_in": 30,
+    "refresh_token": "07b0edfc-f557-4e52-a995-384288e2351e"
+}
+```
+
+NOTE: Refresh tokens are rotated. That is, when you get a new access token, you also get a new refresh token (invalidating any previously issued refresh token).
+
+### Include the access token in an API request
+Access tokens should be included as follows:
+
+ GET /resource HTTP/1.1
+ Host: server.example.com
+ Authorization: Bearer eyJraWQiOiIxNDQ0NzI3MTY0Njk4IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ
+
+This is described in detail in https://tools.ietf.org/html/rfc6750#section-2.1[RFC 6750, section 2.1].
