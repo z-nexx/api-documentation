@@ -1,6 +1,17 @@
 ## Authorization OAuth2 API
 
-Test environment:: https://oauth-pa.izettletest.com
+The test environment is hosted at https://oauth-pa.izettletest.com and has the following users:
+
+[options="header"]
+|===
+| Username / e-mail | Password | Comment
+| testuser1@izettletest.com | passw0rd | 
+| testuser-de@izettletest.com | passw0rd | A user in Germany
+| testuser-es@izettletest.com | passw0rd | A user in Spain
+| testuser-uk@izettletest.com | passw0rd | A user in the UK
+| testuser-refund@izettletest.com | passw0rd | A user with refunded purchases
+|===
+
 
 ### Ask the user to authorize the client
 **RFC 6749:** https://tools.ietf.org/html/rfc6749#section-4.1.1[4.1.1. Authorization Request]
