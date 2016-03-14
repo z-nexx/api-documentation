@@ -1,4 +1,8 @@
 ## Authorization OAuth2 API
+
+### Endpoints
+Test environment:: https://oauth-pa.izettletest.com
+
 ### Ask the user to authorize the client
 **RFC 6749:** https://tools.ietf.org/html/rfc6749#section-4.1.1[4.1.1. Authorization Request]
 
