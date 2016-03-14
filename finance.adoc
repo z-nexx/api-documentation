@@ -1,0 +1,118 @@
+## Finance API
+
+### Account balance
+`GET organizations/us/accounts/{accountTypeGroup}/balance`
+
+accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
+until (optional):: used to get the balance at a specific point in history (ignoring any later transactions).
+
+#### Scope required
+`READ:FINANCE`
+
+#### Example response
+`GET organizations/us/accounts/PRELIMINARY/balance`
+
+```json
+{
+    "data": {
+        "totalBalance": 106853,
+        "currencyId": "SEK"
+    }
+}
+```
+
+### Account transactions
+`GET organizations/us/accounts/{accountTypeGroup}/transactions`
+
+accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
+includeTransactionType:: Which transaction types to include. Multiple values allowed. Valid values:
++
+CARD_PAYMENT::: References a card payment.
+CARD_REFUND::: References a card refund.
+BANK_ACCOUNT_VERIFICATION::: References a small transaction whose only purpose is to verify the merchant's bank account.
+PAYOUT::: A payout to the merchant's bank account.
+FAILED_PAYOUT::: A failed payout (money going back to the merchant's liquid account at iZettle).
+CASHBACK::: Money given to a merchant to retroactively adjust the card payment fee rate.
+CASHBACK_PAYOUT::: Direct payout of a cashback, effectively circumventing the normal flow via the liquid account.
+VOUCHER_ACTIVATION::: Used when activating a voucher (money is inserted to the merchant's fee discount account).
+EMONEY_TRANSFER::: An internal transfer between two merchants' iZettle accounts.
+TELL_FRIEND::: Money given to a merchant for recommending iZettle.
+FROZEN_FUNDS::: Used when funds are frozen (on a transaction from liquid account to reserved account).
+FEE_DISCOUNT_REVOCATION::: An internal reclaim of outstanding fee discount money if the customer has not consumed the discount within a certain time frame. As these funds are reclaimed from a special fee discount account, the transaction will not be visible on the liquid account.
+CARD_PAYMENT_FEE::: References the commission part of a card payment.
+CARD_PAYMENT_FEE_REFUND::: References the commission part of a refund.
+ADVANCE::: References the a cash advance given by iZettle to a merchant.
+ADVANCE_FEE::: References the the fee that iZettle charges when giving a cash advance.
+ADVANCE_DOWNPAYMENT::: References the netting of a cash advance.
+ADVANCE_FEE_DOWNPAYMENT::: References the netting of a cash advance fee.
+SUBSCRIPTION_CHARGE::: References a subscription charge (e.g. for the Kassaregister service).
+
+start:: a start point in time, limiting the result set (inclusive).
+end:: an end point in time, limiting the result set (exclusive).
+limit (optional):: Limit the result set to X number of results.
+offset (optional):: Offset the result set by X number of results.
+        
+#### Scope required
+`READ:FINANCE`
+
+#### Example response
+`GET organizations/us/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
+
+```json
+{
+    "data": [
+        {
+            "timestamp": "2015-11-16T23:47:31.305Z",
+            "amount": -96,
+            "originatorTransactionType": "CARD_PAYMENT_FEE",
+            "originatingTransactionUuid": "488fcee0-8c73-11e5-8ae2-edcaeca65169"
+        },
+        {
+            "timestamp": "2015-11-16T23:47:31.272Z",
+            "amount": 3500,
+            "originatorTransactionType": "CARD_PAYMENT",
+            "originatingTransactionUuid": "488fcee0-8c73-11e5-8ae2-edcaeca65169"
+        },
+        {
+            "timestamp": "2015-11-16T23:47:31.256Z",
+            "amount": -220,
+            "originatorTransactionType": "CARD_PAYMENT_FEE",
+            "originatingTransactionUuid": "29646380-8c52-11e5-8341-b55acee48cd7"
+        },
+        {
+            "timestamp": "2015-11-16T23:47:31.232Z",
+            "amount": 8000,
+            "originatorTransactionType": "CARD_PAYMENT",
+            "originatingTransactionUuid": "29646380-8c52-11e5-8341-b55acee48cd7"
+        },
+        {
+            "timestamp": "2015-11-16T23:47:31.219Z",
+            "amount": -275,
+            "originatorTransactionType": "CARD_PAYMENT_FEE",
+            "originatingTransactionUuid": "f4aa28a0-8c51-11e5-9b2e-94a4ee5f3593"
+        }
+        ...
+```
+
+
+### Payouts
+`GET organizations/us/payout-info`
+
+at (optional):: Use to get payouts until a specific historic DateTime.
+
+#### Scope required
+`READ:FINANCE`
+
+#### Example response
+`GET organizations/us/payout-info`
+```json
+{
+    "data": {
+        "totalBalance": 475880,
+        "currencyId": "SEK",
+        "nextPayoutAmount": 369027,
+        "discountRemaining": 0,
+        "periodicity": "DAILY"
+    }
+}
+```
