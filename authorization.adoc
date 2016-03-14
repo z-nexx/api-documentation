@@ -1,6 +1,5 @@
 ## Authorization OAuth2 API
 
-### Endpoints
 Test environment:: https://oauth-pa.izettletest.com
 
 ### Ask the user to authorize the client
