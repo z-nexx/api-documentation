@@ -1,5 +1,7 @@
 ## Purchase API
 
+Test environment:: https://purchase-pa.izettletest.com
+
 ### Get purchase history
 Will include cash register information if possible.
 
