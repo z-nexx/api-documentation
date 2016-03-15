@@ -8,7 +8,7 @@ Test environment:: https://finance-pa.izettletest.com
 accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
 until (optional):: used to get the balance at a specific point in history (ignoring any later transactions).
 
-#### Scope required
+#### Permissions required
 `READ:FINANCE`
 
 #### Example response
@@ -54,7 +54,7 @@ end:: an end point in time, limiting the result set (exclusive).
 limit (optional):: Limit the result set to X number of results.
 offset (optional):: Offset the result set by X number of results.
         
-#### Scope required
+#### Permissions required
 `READ:FINANCE`
 
 #### Example response
@@ -102,7 +102,7 @@ offset (optional):: Offset the result set by X number of results.
 
 at (optional):: Use to get payouts until a specific historic DateTime.
 
-#### Scope required
+#### Permissions required
 `READ:FINANCE`
 
 #### Example response
