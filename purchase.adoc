@@ -11,7 +11,7 @@ lastPurchaseHash (optional):: A value from "lastPurchaseHash" from the result of
 limit (optional):: The maximum number of records to return.
 descending (optional):: When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
 
-#### Scope required
+#### Permissions required
 `READ:PURCHASE`
 
 #### Example response
@@ -130,7 +130,7 @@ descending (optional):: When true, returns purchases with the highest timestamp 
 
 `GET purchase/{purchaseUUID}`
 
-#### Scope required
+#### Permissions required
 `READ:PURCHASE`
 
 purchaseUUID:: The UUID of the purchase
@@ -201,7 +201,7 @@ purchaseUUID:: The UUID of the purchase
 
 `GET users/me`
 
-#### Scope required
+#### Permissions required
 `READ:PURCHASE`
 
 #### Example response
