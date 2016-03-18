@@ -92,3 +92,20 @@ Access tokens should be included as follows:
  Authorization: Bearer eyJraWQiOiIxNDQ0NzI3MTY0Njk4IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ
 
 This is described in detail in https://tools.ietf.org/html/rfc6750#section-2.1[RFC 6750, section 2.1].
+
+
+## Authorization API
+
+### Get user info
+
+`GET users/me`
+
+#### Permissions required
+`READ:PURCHASE`
+
+#### Example response
+```json
+{
+    "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014"
+}
+```
