@@ -9,7 +9,7 @@ The test environment is hosted at https://oauth-pa.izettletest.com and has the f
 | testuser1-de@izettletest.com | passw0rd | A user in Germany
 | testuser1-es@izettletest.com | passw0rd | A user in Spain
 | testuser1-uk@izettletest.com | passw0rd | A user in the UK
-| testuser1-refund@izettletest.com | passw0rd | A user with refunded purchases
+| testuser-refund@izettletest.com | passw0rd | A user with refunded purchases
 |===
 
 
