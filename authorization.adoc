@@ -5,7 +5,8 @@ The test environment is hosted at https://oauth-pa.izettletest.com and has the f
 [options="header"]
 |===
 | Username / e-mail | Password | Comment
-| testuser1@izettletest.com | passw0rd | 
+| testuser1@izettletest.com | passw0rd | A user in Sweden
+| testuser1-no@izettletest.com | passw0rd | A user in Norway
 | testuser1-de@izettletest.com | passw0rd | A user in Germany
 | testuser1-es@izettletest.com | passw0rd | A user in Spain
 | testuser1-uk@izettletest.com | passw0rd | A user in the UK
