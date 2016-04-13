@@ -2,7 +2,7 @@
 
 ### URL
 Test:: https://purchase-pa.izettletest.com
-Production:: https://purchase.izettle.com/
+Production:: https://purchase.izettle.com
 
 ### Get purchase history
 Will include cash register information if possible.
