@@ -1,5 +1,6 @@
 ## Authorization OAuth2 API
 
+### Environments
 The test environment is hosted at https://oauth-pa.izettletest.com and has the following users:
 
 [options="header"]
@@ -13,6 +14,7 @@ The test environment is hosted at https://oauth-pa.izettletest.com and has the f
 | testuser-refund@izettletest.com | passw0rd | A user with refunded purchases
 |===
 
+The production environment is hosted at https://oauth.izettle.net.
 
 ### Ask the user to authorize the client
 **RFC 6749:** https://tools.ietf.org/html/rfc6749#section-4.1.1[4.1.1. Authorization Request]
@@ -20,7 +22,7 @@ The test environment is hosted at https://oauth-pa.izettletest.com and has the f
 Once the partner is registered and has received a secret and client id (uuid) it can present the user with a link to authorize the partners access to the users data,
 this link is opened up in a web browser:
 ```
-http://localhost:1130/authorize?response_type=code&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&scope=READ:FINANCE%20READ:PURCHASE
+{{URL}}/authorize?response_type=code&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&scope=READ:FINANCE%20READ:PURCHASE
 ```
 
 If the user doesn't have a valid SSO token cookie, the user is forced to login. When authenticated the
@@ -30,7 +32,7 @@ To allow the authorization, the user will invoke the authorization URL above wit
 ```
 curl --write-out %{redirect_url} -s \
 -H 'Cookie: iz_sso=9c3375c9-fd1b-4fde-9743-6f3d2e475388' \
-'http://localhost:1130/authorize?response_type=code&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&scope=READ:FINANCE%20READ:PURCHASE&action=authorize&state=XFadwMEXCJGJUfD'
+'{{URL}}/authorize?response_type=code&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&scope=READ:FINANCE%20READ:PURCHASE&action=authorize&state=XFadwMEXCJGJUfD'
 ```
 The server responds with a redirect to the redirect URI that the partner has provided, appended with the generated authorization code as a parameter `code`:
 ```
@@ -51,7 +53,7 @@ accessing the APIs:
 curl -s -d \
 'grant_type=authorization_code&redirect_uri=http%3A%2F%2Fhttpbin.com&code=4fa87ba8cc7f30e91ad2ab1ad21c1b3e&client_secret=7356b8a1-75ac-4336-970b-bef63cd219c1&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a' \
 -H'Content-Type: application/x-www-form-urlencoded' \
-'http://localhost:1130/token' | python -m json.tool
+'{{URL}}/token' | python -m json.tool
 ```
 
 The response will contain both the access and refresh tokens:
@@ -71,7 +73,7 @@ The access token has a TTL of 30 minutes. Once it has expired the client needs t
 curl -s -d \
 'grant_type=refresh_token&client_secret=7356b8a1-75ac-4336-970b-bef63cd219c1&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&refresh_token=07b0edfc-f557-4e52-a995-384288e2351e' \
 -H'Content-Type: application/x-www-form-urlencoded' \
-'http://localhost:1130/token' | python -m json.tool
+'{{URL}}/token' | python -m json.tool
 ```
 
 The response has the same format as the request above:
