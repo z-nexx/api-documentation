@@ -1,6 +1,8 @@
 ## Finance API
 
-Test environment:: https://finance-pa.izettletest.com
+### URL
+Test:: https://finance-pa.izettletest.com
+Production:: https://finance.izettle.com
 
 ### Account balance
 `GET organizations/us/accounts/{accountTypeGroup}/balance`
