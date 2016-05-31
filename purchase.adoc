@@ -25,6 +25,7 @@ descending (optional):: When true, returns purchases with the highest timestamp 
   "purchases": [
     {
       "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
+	  "purchaseUUID1" : "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
       "amount": 1500,
       "vatAmount": 161,
       "country": "SE",
@@ -79,6 +80,7 @@ descending (optional):: When true, returns purchases with the highest timestamp 
     },
     {
       "purchaseUUID": "zj9yI1wyTvqP46AG8NEaYg",
+      "purchaseUUID1" : "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
       "amount": 1500,
       "vatAmount": 161,
       "country": "SE",
@@ -147,6 +149,7 @@ purchaseUUID:: The UUID of the purchase
 ```json
 {
     "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
+    "purchaseUUID1" : "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
     "amount": 1500,
     "vatAmount": 161,
     "country": "SE",
