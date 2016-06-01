@@ -15,6 +15,11 @@ endDate (optional):: Last date, inclusive, for purchases to be retrieved until. 
 limit (optional):: The maximum number of records to return.
 descending (optional):: When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
 
+Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation of the UUID fields.  The UUID fields can be either of:
+
+1. Base64 encoded UUID. 
+2. (This is relevant for older purchases) a Long purchase ID.  In cases where the purchase ID is a long (old ones) then there can be no UUID representation, so these values will be null.
+
 #### Permissions required
 `READ:PURCHASE`
 
@@ -25,7 +30,7 @@ descending (optional):: When true, returns purchases with the highest timestamp 
   "purchases": [
     {
       "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
-	  "purchaseUUID1" : "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
+      "purchaseUUID1" : "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
       "amount": 1500,
       "vatAmount": 161,
       "country": "SE",
@@ -80,7 +85,7 @@ descending (optional):: When true, returns purchases with the highest timestamp 
     },
     {
       "purchaseUUID": "zj9yI1wyTvqP46AG8NEaYg",
-      "purchaseUUID1" : "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
+      "purchaseUUID1" : "ce3f7223-5c32-4efa-8fe3-a006f0d11a62",
       "amount": 1500,
       "vatAmount": 161,
       "country": "SE",
@@ -149,7 +154,7 @@ purchaseUUID:: The UUID of the purchase
 ```json
 {
     "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
-    "purchaseUUID1" : "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
+    "purchaseUUID1" : "e876c3ae-750d-4638-b98a-78868a434b89",
     "amount": 1500,
     "vatAmount": 161,
     "country": "SE",
