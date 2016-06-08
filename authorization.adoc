@@ -51,7 +51,7 @@ accessing the APIs:
 
 ```
 curl -s -d \
-'grant_type=authorization_code&redirect_uri=http%3A%2F%2Fhttpbin.com&code=4fa87ba8cc7f30e91ad2ab1ad21c1b3e&client_secret=7356b8a1-75ac-4336-970b-bef63cd219c1&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a' \
+'grant_type=authorization_code&redirect_uri=http%3A%2F%2Fhttpbin.org&code=4fa87ba8cc7f30e91ad2ab1ad21c1b3e&client_secret=7356b8a1-75ac-4336-970b-bef63cd219c1&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a' \
 -H'Content-Type: application/x-www-form-urlencoded' \
 '{{URL}}/token' | python -m json.tool
 ```
