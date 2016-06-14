@@ -98,6 +98,8 @@ offset (optional):: Offset the result set by X number of results.
         ...
 ```
 
+### Link finance transactions with card purchases
+The field `originatingTransactionUuid` links the finance transaction to a card purchase using the field `cardPaymentUUID1` in the [Purchase API](https://github.com/iZettle/api-documentation/blob/master/purchase.adoc).
 
 ### Payouts
 `GET organizations/us/payout-info`
