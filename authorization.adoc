@@ -107,7 +107,7 @@ This is described in detail in https://tools.ietf.org/html/rfc6750#section-2.1[R
 #### Example response     
 ```json       
 {     
-    "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014"        
+    "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014",        
     "organizationUuid": "ab305d54-75b4-431b-adb2-eb6b9e546013"
 }     
 ```
