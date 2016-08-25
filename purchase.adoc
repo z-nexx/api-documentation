@@ -61,6 +61,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
       "cardPayments": [
         {
           "cardPaymentUUID": "aDvfSXWDRb-NmbbwMegqdA",
+          "cardPaymentUUID1": "683bdf49-7583-45bf-8d99-b6f031e82a74",
           "amount": 1500,
           "cardType": "MASTERCARD",
           "maskedPan": "518779******5289",
@@ -183,6 +184,7 @@ purchaseUUID:: The UUID of the purchase
     "cardPayments": [
         {
             "cardPaymentUUID": "aDvfSXWDRb-NmbbwMegqdA",
+            "cardPaymentUUID1": "683bdf49-7583-45bf-8d99-b6f031e82a74",
             "amount": 1500,
             "cardType": "MASTERCARD",
             "maskedPan": "540200******7008",
