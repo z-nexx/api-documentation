@@ -138,6 +138,51 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
 }
 ```
 
+#### How to load all purchases for a user
+
+You should never retrieve all the purchases in one request, since that can potentially but to much load on the server causing the request to be rejected or time out.
+
+Instead, you should request the purchases splitted up into "pages", using the `limit` and `lastPurchaseHash` parameters.
+
+The `limit` parameter will set the page size, and the `lastPurchaseHash` parameter sets the starting point from where to retrieve purchases. Every response from the purchase service will contain a `lastPurchaseHash` field, which can be added to the new request to retrieve the next "page".
+
+In order to load all purchases, begin with an initial request without the `lastPurchaseHash` parameter being set, this will retrieve the first _n_ purchases (where _n_ is the page size defined by the `limit` parameter):
+
+```
+GET /purchases?limit=100
+```
+
+The result will contain the first _n_ number of purchases.
+```
+{
+  "purchases": [
+    ....
+  ],
+  "firstPurchaseHash": "14233908814696HbDrnUNRji5iniGikNLiQ",
+  "lastPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg"
+}
+```
+
+To retrieve the following pages, use the `lastPurchaseHash` field in the previous response to load the next page:
+```
+GET /purchases?limit=100&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg
+```
+
+The result will contain the next _n_ number of purchases:
+```
+{
+  "purchases": [
+    ....
+  ],
+  "firstPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg",
+  "lastPurchaseHash": "1426265546490RPXdoMmDEeSg5Gw_2s_ZrQ"
+}
+```
+
+Continue this process by using the `lastPurchaseHash` in the previous response as a request parameter in the following request until you receive an empty result.
+
+If you want to be able to load new purchases later on, then store the last used `lastPurchaseHash` and use that to continue retrieving new purchases at a later time.
+
 ### Get purchase details
 
 `GET purchase/{purchaseUUID}`
