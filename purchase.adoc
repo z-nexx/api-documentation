@@ -140,7 +140,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
 
 #### How to load all purchases for a user
 
-You should never retrieve all the purchases in one request, since that can potentially but to much load on the server causing the request to be rejected or time out.
+You should never retrieve all the purchases in one request, since that can potentially put too much load on the server causing the request to be rejected or time out.
 
 Instead, you should request the purchases splitted up into "pages", using the `limit` and `lastPurchaseHash` parameters.
 
