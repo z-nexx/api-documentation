@@ -45,7 +45,7 @@ The `state` parameter is required for security reasons. You should set it to a r
 ### Retrieve access and refresh tokens
 **RFC 6749:** https://tools.ietf.org/html/rfc6749#section-4.1.3[4.1.3. Access Token Request]
 
-Once the client has received the authorization code in the redirect it can use this code to request the unique access and refresh tokens used when 
+Once the client has received the authorization code in the redirect it can use this code to request the unique access and refresh tokens used when
 accessing the APIs:
 
 
@@ -68,7 +68,7 @@ The response will contain both the access and refresh tokens:
 ### Request a new access token
 **RFC 6749:** https://tools.ietf.org/html/rfc6749#section-6[6. Refreshing an Access Token]
 
-The access token has a TTL of 30 minutes. Once it has expired the client needs to request a new access token using the refresh token:
+The access token has a lifetime of 1800 seconds (30 minutes). Once it has expired the client needs to request a new access token using the refresh token:
 ```
 curl -s -d \
 'grant_type=refresh_token&client_secret=7356b8a1-75ac-4336-970b-bef63cd219c1&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&refresh_token=07b0edfc-f557-4e52-a995-384288e2351e' \
@@ -80,7 +80,7 @@ The response has the same format as the request above:
 ```json
 {
     "access_token": "eyJraWQiOiIxNDQ0NzI3MTY0Njk4IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJpWmV0dGxlIiwiYXVkIjoiQVBJIiwiZXhwIjoxNDQ0ODI1NTk5LCJqdGkiOiJzRXlEQ2JOS1d1dWhqN2FadGxibnJnIiwiaWF0IjoxNDQ0ODIzNzk5LCJuYmYiOjE0NDQ4MjM2NzksInN1YiI6IlllemNseEJlVHBLUDBqNXRBdmdqWXciLCJzY29wZSI6ImFsbCJ9.RtbbSu68fMMGssQHIhdLF6Sa4nFeBkMDSQkDsVYxaKa0jMqd6i6Dl9W1C4XJdnNdNiuke6fG5dGGSB6yR6mx5qXJcEBl8bwUTp7r1jX3n9WbgXHQtwCiSx5J3wMrE3RIEGHqSeD0DkQDLaKLqlb12H1DUMK4wTFL3_KxtYqP_dEijOPtV9gN7EkZUIitWqMa3DOR2IqszldrcUXIVPkp_DRWtjvBSCsgglQFGgjyblpOQJM5CR64aD1CgyOSE6JAMWHBhbB7j7gB6DALHLh82twU9camEkCFKKra4n1Zj6mHF9DMSwccH7lpdjjSKPEUujyKCaLQRn82AH0Q8vSlKg",
-    "expires_in": 30,
+    "expires_in": 1800,
     "refresh_token": "07b0edfc-f557-4e52-a995-384288e2351e"
 }
 ```
@@ -96,18 +96,18 @@ Access tokens should be included as follows:
 
 This is described in detail in https://tools.ietf.org/html/rfc6750#section-2.1[RFC 6750, section 2.1].
 
-## Authorization API       
-      
-### Get user info     
-      
-`GET users/me`        
-      
+## Authorization API
+
+### Get user info
+
+`GET users/me`
+
 #### Permissions required
-      
-#### Example response     
-```json       
-{     
-    "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014",        
+
+#### Example response
+```json
+{
+    "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014",
     "organizationUuid": "ab305d54-75b4-431b-adb2-eb6b9e546013"
-}     
+}
 ```
