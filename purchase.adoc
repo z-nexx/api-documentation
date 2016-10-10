@@ -136,7 +136,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
 }
 ```
 
-#### Example response 2 (refund)
+#### Example response 2 (partial refund)
 
 ```json
 {
