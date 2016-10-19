@@ -110,21 +110,12 @@ Access tokens should be included as follows:
 This is described in detail in https://tools.ietf.org/html/rfc6750#section-2.1[RFC 6750, section 2.1].
 
 #### Errors
-When using an expired access token in an API request, the resource service will return an error in the following format:
+When using an expired access token in an API request, the resource service will return any error with the token in the HTTP header `WWW-Authenticate`, similar to this:
 ```
-HTTP 401 Unauthorized
-{
-    "meta": {
-        "developerMessage": "Access token expired at: NumericDate{1472482768 -> Aug 29, 2016 2:59:28 PM UTC}",
-        "errorCode": "ACCESS_TOKEN_EXPIRED"
-    }
-}
+Bearer error="invalid_request", error_description="ACCESS_TOKEN_EXPIRED"
 ```
 
-Additionally, the HTTP header `WWW-Authenticate` will contain similar information:
-```
-Bearer error="invalid_request", error_description="The access token has expired"
-``` 
+Note: Not all services are not currently using the error code `ACCESS_TOKEN_EXPIRED` as the content of the `error_description` field, but rather the clear text value "The access token has expired". This will change over time and eventually all services will use the `ACCESS_TOKEN_EXPIRED`.
 
 ## Authorization API
 
