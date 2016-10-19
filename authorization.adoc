@@ -110,7 +110,7 @@ Access tokens should be included as follows:
 This is described in detail in https://tools.ietf.org/html/rfc6750#section-2.1[RFC 6750, section 2.1].
 
 #### Errors
-When using an expired access token in an API request, the resource service will return any error with the token in the HTTP header `WWW-Authenticate`, similar to this:
+When using an expired or invalid access token in an API request, the resource service will return a `HTTP 401 Unauthorized` response, with the error set in the HTTP header `WWW-Authenticate`, similar to this:
 ```
 Bearer error="invalid_request", error_description="ACCESS_TOKEN_EXPIRED"
 ```
