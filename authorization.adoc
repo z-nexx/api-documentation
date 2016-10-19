@@ -87,6 +87,19 @@ The response has the same format as the request above:
 
 NOTE: Refresh tokens are rotated. That is, when you get a new access token, you also get a new refresh token (invalidating any previously issued refresh token).
 
+### Errors
+**RFC 6749:** https://tools.ietf.org/html/rfc6749#section-5.2[5.2. Error Response]
+
+The Authorization OAuth2 API will return errors when retrieving and refreshing access tokens as specified in the RFC, for example:
+
+```
+HTTP 400 Bad Request
+{
+    "error": "invalid_request",
+    "error_description": "invalid refresh_token"
+}
+```
+
 ### Include the access token in an API request
 Access tokens should be included as follows:
 
@@ -95,6 +108,23 @@ Access tokens should be included as follows:
  Authorization: Bearer eyJraWQiOiIxNDQ0NzI3MTY0Njk4IiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYifQ
 
 This is described in detail in https://tools.ietf.org/html/rfc6750#section-2.1[RFC 6750, section 2.1].
+
+#### Errors
+When using an expired access token in an API request, the resource service will return an error in the following format:
+```
+HTTP 401 Unauthorized
+{
+    "meta": {
+        "developerMessage": "Access token expired at: NumericDate{1472482768 -> Aug 29, 2016 2:59:28 PM UTC}",
+        "errorCode": "ACCESS_TOKEN_EXPIRED"
+    }
+}
+```
+
+Additionally, the HTTP header `WWW-Authenticate` will contain similar information:
+```
+Bearer error="invalid_request", error_description="The access token has expired"
+``` 
 
 ## Authorization API
 
