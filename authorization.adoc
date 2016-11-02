@@ -85,7 +85,7 @@ The response has the same format as the request above:
 }
 ```
 
-NOTE: Refresh tokens are rotated. That is, when you get a new access token, you also get a new refresh token (invalidating any previously issued refresh token).
+NOTE: Rotation of refresh tokens _may be enabled_ at any given time. That is, when you get a new access token, you might also get a new refresh token (invalidating any previously issued refresh token). Therefore always make sure to pick up the refresh token you get in the response and use that for the next refresh request, instead of reusing the current refresh token.
 
 ### Errors
 **RFC 6749:** https://tools.ietf.org/html/rfc6749#section-5.2[5.2. Error Response]
