@@ -40,7 +40,7 @@ http://httpbin.org/get?code=4fa87ba8cc7f30e91ad2ab1ad21c1b3e&state=XFadwMEXCJGJU
 ```
 
 #### The redirect_uri parameter
-The `redirect_uri` parameter is to the application URI, where the user is to be redirected after they have authorized the partner application. The redirected URI must be one of the URIs, registered to the designated partner.
+The 'redirect_uri' parameter is provided by the partner and is where the user will be redirected after a successful authorization. Only URIs registered with the partner application are allowed.
 
 #### The state parameter
 The `state` parameter is required for security reasons. You should set it to a random unique value for each request (a nonce), and then verify that the redirect URI contains the same value.
