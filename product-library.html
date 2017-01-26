@@ -1,0 +1,3760 @@
+<!DOCTYPE html>
+<html>
+<title>API Document</title>
+
+<xmp theme="united" style="display:none;">
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @pgisslen
+ Watch 5
+  Star 15
+ Fork 32 kongchen/api-doc-template
+ Code  Issues 4  Pull requests 1  Projects 0  Wiki  Pulse  Graphs
+Branch: master Find file Copy pathapi-doc-template/v3.0/markdown.hbs
+5722f90  on 5 May 2015
+@kongchen kongchen update template
+1 contributor
+RawBlameHistory
+109 lines (82 sloc)  1.94 KB
+#Product Library API documentation
+
+
+## HTTPS://products.izettle.com/organizations/self/api
+
+
+
+
+
+
+**Version** v1
+
+[**Terms of Service**]()
+
+
+
+
+
+
+
+
+
+
+
+
+
+# APIs
+
+
+## /organizations/{organizationUuid}/discounts
+
+
+### GET
+
+<a id="getAllDiscounts">Retrieves all discount</a>
+
+Get all discount entities that the authorized user has access to.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * READ:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/discount">discount</a>|
+
+
+
+
+
+
+
+### POST
+
+
+<a id="createDiscount">Creates a single discount entity</a>
+
+Crates a single discount entity. The location of the newly created discount will be available in the successful response as a Location header
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new discount to create
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/DiscountRequest">DiscountRequest</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/discounts/{discountUuid}
+
+
+### GET
+
+<a id="getDiscount">Retrieves a single discount entity</a>
+
+Get the full discount with the provided UUID. The method supports conditional GET through providing a If-None-Match header. If the conditional prerequisite is fullfilled, the full discount is returned: otherwise a 304 not modified will be returned with an empty body.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * READ:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>discountUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Discount Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/discount">discount</a>|
+| 304    | Not Modified |  - |
+| 404    | Not found |  - |
+
+
+
+
+
+### PUT
+
+<a id="updateDiscount">Updates a single discount entity</a>
+
+Updates a discount entity using JSON merge patch (https://tools.ietf.org/html/rfc7386). This means that only included fields will be changed: null values removes the field on the target entity, and other values updates the field.
+
+Conditional updates are supported through the If-Match header. If the conditional prerequisite is fullfilled, the discount is updated: otherwise a 412 precondition failed will be returned with an empty body.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>discountUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Discount Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new version of the discount to update, partials of the object can be provided as per JSON merge patch
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/DiscountRequest">DiscountRequest</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 404    | Not found |  - |
+| 412    | Precondition failed: ETag did not match the expected value |  - |
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteDiscount">Deletes a single discount entity</a>
+
+Deletes a discount entity
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>discountUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Discount Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 404    | discount not found |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/library
+
+
+### GET
+
+<a id="getLibrarySnapshot">Retrieves the entire library</a>
+
+Will return the entire library for the authenticated user. If size of the library exceeds server preferences (normally 500) or the value of the optional limit parameter, the result will be paginated. Pagination is indicated by returning a Link header, indicating next URI to fetch.
+
+The resulting header value will look something like: &#x27;&lt;https://products.izettle.com/organizations/self/library?limit=X&amp;offset=Y&gt;; rel=&quot;next&quot;&#x27; where limit is number of items in response, and offset is current position in pagination. The rel-part in the header is the links relation to the data previously recieved. The idea is as long as this header is present there are still items remaining to be fetched. When either the header is not present or it&#x27;s value doesn&#x27;t contain any &quot;next&quot; value, all items have been sent to the client.
+
+Note: The client should NOT try to extract query parameters from the IRI, but rather use it as-is for the next request. Also, clients should be perpared that one Link header might contain multiple other IRIs that are not &quot;next&quot; (there will never be more than one &quot;next&quot; though).
+
+See more at:
+ IETF: https://tools.ietf.org/html/rfc5988 
+GitHub: https://developer.github.com/guides/traversing-with-pagination/
+If eventLogUuid is provided, the response will only include events affecting the library since that event. Such responses are normally quite small and would be a prefered method for most fat clients after retrieving the initial full library
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * READ:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>eventLogUuid</th>
+    <td>query</td>
+    <td>no</td>
+    <td>
+        The uuid of the earliest eventlog already known to the client
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>snapshotUuid</th>
+    <td>query</td>
+    <td>no</td>
+    <td>
+        The uuid of the snapshot currently paging through
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>limit</th>
+    <td>query</td>
+    <td>no</td>
+    <td>
+        The max number of items returned per request
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+<tr>
+    <th>offset</th>
+    <td>query</td>
+    <td>no</td>
+    <td>
+        The offset within the current snapshot for the current page
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/library">library</a>|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/modifierset/{modifiersetUuid}/modifiers/{modifierUuid}
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteModifier">Deletes a single modifier entity belonging to the modifier set. Since it&#x27;s a precondition that all modifier sets have at least one modifier it is not possible to delete the last remaining modifier on the specified modifier set.</a>
+
+Deletes the modifier entity
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>modifierSetUuids</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Modifier Set Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>modifierUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Modifier Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 400    | Unable to delete last remaning modifier |  - |
+| 404    | Modifier set not found |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/modifiersets
+
+
+### GET
+
+<a id="getAllModifierSets">Retrieves all modifier sets</a>
+
+Get all modifier set entities that the authorized user has access to.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * READ:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/modifierSet">modifierSet</a>|
+
+
+
+
+
+
+
+### POST
+
+
+<a id="createModifierSet">Creates a single product entity</a>
+
+Crates a single modifier set entity. The location of the newly created modifier set will be available in the successful response as a Location header
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new modifier set to create
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/ModifierSetCreateRequest">ModifierSetCreateRequest</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/modifiersets/{modifierSetUuid}
+
+
+### GET
+
+<a id="getModifierSet">Retrieves a single product entity</a>
+
+Get the full modifier set with the provided UUID. The method supports conditional GET through providing a If-None-Match header. If the conditional prerequisite is fullfilled, the full modifier set is returned: otherwise a 304 not modified will be returned with an empty body.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * READ:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>modifierSetUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Modifier Set Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/modifierSet">modifierSet</a>|
+| 304    | Not Modified |  - |
+| 404    | Not found |  - |
+
+
+
+
+
+### PUT
+
+<a id="updateModifierSet">Updates a single modifier set entity</a>
+
+Updates a modifier set entity using JSON merge patch (https://tools.ietf.org/html/rfc7386). This means that only included fields will be changed: null values removes the field on the target entity, and other values updates the field.
+
+To be able to do this consistently, no updates can be done on modifiers at this level: only their mutual order. For adding, deleting or updating modifiers themselves, see /organizations/{organizationUuid}/modifiersets/{modifierSetUuid}/modifiers/{modifierUuid}.
+
+Conditional updates are supported through the If-Match header. If the conditional prerequisite is fullfilled, the modifier set is updated: otherwise a 412 precondition failed will be returned with an empty body.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>modifierSetUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Modifier Set Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new version of the modifier set to update, partials of the object can be provided as per JSON merge patch
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/ModifierSetUpdateRequest">ModifierSetUpdateRequest</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 404    | Not found |  - |
+| 412    | Precondition failed: ETag did not match the expected value |  - |
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteModifierSet">Deletes a single modifier set entity</a>
+
+Deletes a modifier set entity
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>modifierSetUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Modifier Set Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 404    | modifier set not found |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/modifiersets/{modifierSetUuid}/modifiers
+
+
+
+
+
+
+### POST
+
+
+<a id="createModifier">Create a single modifier entity</a>
+
+Creates a modifier entity. The location of updated modifier set with the newly created modifier will be available in the successful response as a Location header
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>modifierSetUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Modifier Set Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new modifier to create
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/modifier">modifier</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/modifiersets/{modifierSetUuid}/modifiers/{modifierUuid}
+
+
+
+
+### PUT
+
+<a id="updateModifier">Updates a single modifier entity</a>
+
+Updates a modifier entity using JSON merge patch (https://tools.ietf.org/html/rfc7386). This means that only included fields will be changed: null values removes the field on the target entity, and other values updates the field.
+
+Conditional updates are supported through the If-Match header. If the conditional prerequisite is fullfilled, the modifier is updated: otherwise a 412 precondition failed will be returned with an empty body.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>modifierSetUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Modifier Set Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>modifierUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Modifier Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new version of the modifier to update, partials of the object can be provided as per JSON merge patch
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/modifier">modifier</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 404    | Not found |  - |
+| 412    | Precondition failed: ETag did not match the expected value |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/products
+
+
+### GET
+
+<a id="getAllProducts">Retrieves all products</a>
+
+Get all product entities that the authorized user has access to. The response might be fairly large, so clients with limited capacity might want to use the library endpoint instead
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * READ:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/product">product</a>|
+
+
+
+
+
+
+
+### POST
+
+
+<a id="createProduct">Creates a single product entity</a>
+
+Creates a single product entity. The location of the newly created product will be available in the successful response as a Location header
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new product to create
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/ProductCreateRequest">ProductCreateRequest</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteProducts">Bulk delete product entities</a>
+
+Build delete product entities.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>uuid</th>
+    <td>query</td>
+    <td>yes</td>
+    <td>
+        List of products to delete
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>Array[string] (multi)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/products/{productUuid}
+
+
+### GET
+
+<a id="getProduct">Retrieves a single product entity</a>
+
+Get the full product with the provided UUID. The method supports conditional GET through providing a If-None-Match header. If the conditional prerequisite is fullfilled, the full product is returned: otherwise a 304 not modified will be returned with an empty body.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * READ:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>productUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Product Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/product">product</a>|
+| 304    | Not Modified |  - |
+| 404    | Not found |  - |
+
+
+
+
+
+### PUT
+
+<a id="updateProduct">Updates a single product entity</a>
+
+Updates a product entity using JSON merge patch (https://tools.ietf.org/html/rfc7386). This means that only included fields will be changed: null values removes the field on the target entity, and other values updates the field.
+
+To be able to do this consistently, no updates can be done on variants at this level: only their mutual order. For adding, deleting or updating variants themselves, see products/{productUuid}/variants/{variantUuid}.
+
+Conditional updates are supported through the If-Match header. If the conditional prerequisite is fullfilled, the product is updated: otherwise a 412 precondition failed will be returned with an empty body.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>productUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Product Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new version of the product to update, partials of the object can be provided as per JSON merge patch
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/ProductUpdateRequest">ProductUpdateRequest</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 404    | Not found |  - |
+| 412    | Precondition failed: ETag did not match the expected value |  - |
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteProduct">Deletes a single product entity</a>
+
+Deletes a product entity
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>productUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Product Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 404    | Product not found |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/products/{productUuid}/variants
+
+
+
+
+
+
+### POST
+
+
+<a id="createVariant">Creates a single variant entity</a>
+
+Creates a single variant entity. The location of updated product with the newly created variant will be available in the successful response as a Location header
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>productUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Product Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new variant to create
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/variant">variant</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /organizations/{organizationUuid}/products/{productUuid}/variants/{variantUuid}
+
+
+
+
+### PUT
+
+<a id="updateVariant">Updates a single variant entity</a>
+
+Updates a variant entity using JSON merge patch (https://tools.ietf.org/html/rfc7386). This means that only included fields will be changed: null values removes the field on the target entity, and other values updates the field.
+
+Conditional updates are supported through the If-Match header. If the conditional prerequisite is fullfilled, the variant is updated: otherwise a 412 precondition failed will be returned with an empty body.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>productUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Product Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>variantUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Variant Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>body</th>
+    <td>body</td>
+    <td>yes</td>
+    <td>
+        The new version of the variant to update, partials of the object can be provided as per JSON merge patch
+        
+    </td>
+    <td> - </td>
+
+    <td>
+    
+    <a href="#/definitions/variant">variant</a> 
+    </td>
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 404    | Not found |  - |
+| 412    | Precondition failed: ETag did not match the expected value |  - |
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteVariant">Deletes the variant entity</a>
+
+Deletes a single variant entity belonging to the product. Since it&#x27;s a precondition that all products have at least one variant it is not possible to delete the last remaining variant on specified product.
+
+
+
+
+#### Security
+
+
+
+
+* oauth2
+   * WRITE:PRODUCT
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>organizationUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Organization Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>productUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Product Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+<tr>
+    <th>variantUuid</th>
+    <td>path</td>
+    <td>yes</td>
+    <td>
+        Variant Identifier as an UUID
+        
+    </td>
+    <td> - </td>
+
+    
+            <td>string (uuid)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 400    | Unable to delete last remaning variant |  - |
+| 404    | Product not found |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Definitions
+
+## <a name="/definitions/DiscountRequest">DiscountRequest</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>description</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>imageLookupKeys</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>amount</td>
+            <td>
+                
+                    <a href="#/definitions/Price">Price</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>percentage</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>externalReference</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/ModifierSetCreateRequest">ModifierSetCreateRequest</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>modifiers</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/modifier">modifier</a>]
+                
+                
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/ModifierSetUpdateRequest">ModifierSetUpdateRequest</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>modifierUuids</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Price">Price</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>amount</td>
+            <td>
+                
+                    
+                    integer (int64)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>currencyId</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/ProductCreateRequest">ProductCreateRequest</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>categories</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>description</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>imageLookupKeys</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>modifierSetUuids</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>variants</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/variant">variant</a>]
+                
+                
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>externalReference</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/ProductUpdateRequest">ProductUpdateRequest</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>categories</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>description</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>imageLookupKeys</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>modifierSetUuids</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>variantUuids</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>externalReference</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/discount">discount</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>description</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>imageLookupKeys</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>amount</td>
+            <td>
+                
+                    <a href="#/definitions/Price">Price</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>percentage</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>externalReference</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>etag</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>updated</td>
+            <td>
+                
+                    
+                    integer (int64)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>updatedBy</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>created</td>
+            <td>
+                
+                    
+                    integer (int64)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/library">library</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>untilEventLogUuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>fromEventLogUuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>products</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/product">product</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>discounts</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/discount">discount</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>modifierSets</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/modifierSet">modifierSet</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>deletedProducts</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>deletedDiscounts</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>deletedModifierSets</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/modifier">modifier</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>description</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>price</td>
+            <td>
+                
+                    <a href="#/definitions/Price">Price</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/modifierSet">modifierSet</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>modifiers</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/modifier">modifier</a>]
+                
+                
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>etag</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>updated</td>
+            <td>
+                
+                    
+                    integer (int64)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>updatedBy</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>created</td>
+            <td>
+                
+                    
+                    integer (int64)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/product">product</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>categories</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>description</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>imageLookupKeys</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>modifierSetUuids</td>
+            <td>
+                
+                
+                array[string]
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>variants</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/variant">variant</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>externalReference</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>etag</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>updated</td>
+            <td>
+                
+                    
+                    integer (int64)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>updatedBy</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>created</td>
+            <td>
+                
+                    
+                    integer (int64)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/variant">variant</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>uuid</td>
+            <td>
+                
+                    
+                    string (uuid)
+                
+            </td>
+            <td>required</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>name</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>description</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>sku</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>barcode</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>defaultQuantity</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>unitName</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>price</td>
+            <td>
+                
+                    <a href="#/definitions/Price">Price</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>costPrice</td>
+            <td>
+                
+                    <a href="#/definitions/Price">Price</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>vatPercentage</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
+
+</xmp>
+
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>
