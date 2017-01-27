@@ -1,0 +1,21 @@
+
+[[_securityscheme]]
+== Security
+
+[[_oauth2]]
+=== oauth2
+[%hardbreaks]
+_Type_ : oauth2
+_Flow_ : implicit
+_Token URL_ : https://oauth.izettle.net
+
+
+[options="header", cols=".^3,.^17"]
+|===
+|Name|Description
+|READ:PRODUCT|Access to read product library data
+|WRITE:PRODUCT|Access to modify product library data
+|===
+
+
+

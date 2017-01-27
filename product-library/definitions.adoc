@@ -1,0 +1,335 @@
+
+[[_definitions]]
+== Definitions
+
+[[_discountrequest]]
+=== DiscountRequest
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|*amount* +
+_optional_|<<_price,Price>>
+|*description* +
+_optional_ +
+_read-only_|string
+|*externalReference* +
+_optional_ +
+_read-only_|string
+|*imageLookupKeys* +
+_optional_|< string > array
+|*name* +
+_optional_ +
+_read-only_|string
+|*percentage* +
+_optional_ +
+_read-only_|string
+|*uuid* +
+_required_ +
+_read-only_|string(uuid)
+|===
+
+
+[[_modifiersetcreaterequest]]
+=== ModifierSetCreateRequest
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*modifiers* +
+_required_||< <<_modifier,modifier>> > array
+|*name* +
+_required_ +
+_read-only_|*Length* : `1 - 2147483647`|string
+|*uuid* +
+_required_ +
+_read-only_||string(uuid)
+|===
+
+
+[[_modifiersetupdaterequest]]
+=== ModifierSetUpdateRequest
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*modifierUuids* +
+_required_||< string(uuid) > array
+|*name* +
+_required_ +
+_read-only_|*Length* : `1 - 2147483647`|string
+|*uuid* +
+_required_ +
+_read-only_||string(uuid)
+|===
+
+
+[[_price]]
+=== Price
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*amount* +
+_required_ +
+_read-only_|*Minimum value* : `0`|integer(int64)
+|*currencyId* +
+_required_ +
+_read-only_||enum (AED, AFA, AFN, ALL, AMD, ANG, AOA, ARS, AUD, AWG, AZM, AZN, BAM, BBD, BDT, BGN, BHD, BIF, BMD, BND, BOB, BRL, BSD, BTN, BWP, BYR, BZD, CAD, CDF, CHF, CLP, CNY, COP, CRC, CSD, CUC, CUP, CVE, CYP, CZK, DJF, DKK, DOP, DZD, EEK, EGP, ERN, ETB, EUR, FJD, FKP, GBP, GEL, GGP, GHC, GHS, GIP, GMD, GNF, GTQ, GYD, HKD, HNL, HRK, HTG, HUF, IDR, ILS, IMP, INR, IQD, IRR, ISK, JEP, JMD, JOD, JPY, KES, KGS, KHR, KMF, KPW, KRW, KWD, KYD, KZT, LAK, LBP, LKR, LRD, LSL, LTL, LVL, LYD, MAD, MDL, MGA, MKD, MMK, MNT, MOP, MRO, MTL, MUR, MVR, MWK, MXN, MYR, MZM, MZN, NAD, NGN, NIO, NOK, NPR, NZD, OMR, PAB, PEN, PGK, PHP, PKR, PLN, PYG, QAR, RON, RSD, RUB, RWF, SAR, SBD, SCR, SDD, SDG, SEK, SGD, SHP, SIT, SKK, SLL, SOS, SPL, SRD, SSP, STD, SVC, SYP, SZL, THB, TJS, TMM, TMT, TND, TOP, TRL, TRY, TTD, TVD, TWD, TZS, UAH, UGX, USD, UYU, UZS, VEB, VEF, VND, VUV, WST, XAF, XAG, XAU, XCD, XDR, XOF, XPD, XPF, XPT, YER, ZAR, ZMK, ZMW, ZWD, ZWL)
+|===
+
+
+[[_productcreaterequest]]
+=== ProductCreateRequest
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|*categories* +
+_optional_||< string > array
+|*description* +
+_optional_ +
+_read-only_||string
+|*externalReference* +
+_optional_ +
+_read-only_||string
+|*imageLookupKeys* +
+_optional_||< string > array
+|*modifierSetUuids* +
+_optional_ +
+_read-only_||string(uuid)
+|*name* +
+_required_ +
+_read-only_|*Length* : `1 - 2147483647`|string
+|*uuid* +
+_required_ +
+_read-only_||string(uuid)
+|*variants* +
+_required_||< <<_variant,variant>> > array
+|===
+
+
+[[_productupdaterequest]]
+=== ProductUpdateRequest
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|*categories* +
+_optional_|< string > array
+|*description* +
+_optional_ +
+_read-only_|string
+|*externalReference* +
+_optional_ +
+_read-only_|string
+|*imageLookupKeys* +
+_optional_|< string > array
+|*modifierSetUuids* +
+_optional_|< string(uuid) > array
+|*name* +
+_required_ +
+_read-only_|string
+|*uuid* +
+_required_ +
+_read-only_|string(uuid)
+|*variantUuids* +
+_required_|< string(uuid) > array
+|===
+
+
+[[_discount]]
+=== discount
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|*amount* +
+_optional_|<<_price,Price>>
+|*created* +
+_required_ +
+_read-only_|integer(int64)
+|*description* +
+_optional_ +
+_read-only_|string
+|*etag* +
+_required_ +
+_read-only_|string
+|*externalReference* +
+_optional_ +
+_read-only_|string
+|*imageLookupKeys* +
+_optional_|< string > array
+|*name* +
+_required_ +
+_read-only_|string
+|*percentage* +
+_optional_ +
+_read-only_|string
+|*updated* +
+_required_ +
+_read-only_|integer(int64)
+|*updatedBy* +
+_optional_ +
+_read-only_|string(uuid)
+|*uuid* +
+_required_ +
+_read-only_|string(uuid)
+|===
+
+
+[[_library]]
+=== library
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|*deletedDiscounts* +
+_optional_|< string(uuid) > array
+|*deletedModifierSets* +
+_optional_|< string(uuid) > array
+|*deletedProducts* +
+_optional_|< string(uuid) > array
+|*discounts* +
+_optional_|< <<_discount,discount>> > array
+|*fromEventLogUuid* +
+_optional_ +
+_read-only_|string(uuid)
+|*modifierSets* +
+_optional_|< <<_modifierset,modifierSet>> > array
+|*products* +
+_optional_|< <<_product,product>> > array
+|*untilEventLogUuid* +
+_optional_ +
+_read-only_|string(uuid)
+|===
+
+
+[[_modifier]]
+=== modifier
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|*description* +
+_optional_ +
+_read-only_|string
+|*name* +
+_required_ +
+_read-only_|string
+|*price* +
+_optional_|<<_price,Price>>
+|*uuid* +
+_required_ +
+_read-only_|string(uuid)
+|===
+
+
+[[_modifierset]]
+=== modifierSet
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|*created* +
+_required_ +
+_read-only_|integer(int64)
+|*etag* +
+_required_ +
+_read-only_|string
+|*modifiers* +
+_required_|< <<_modifier,modifier>> > array
+|*name* +
+_required_ +
+_read-only_|string
+|*updated* +
+_required_ +
+_read-only_|integer(int64)
+|*updatedBy* +
+_optional_ +
+_read-only_|string(uuid)
+|*uuid* +
+_required_ +
+_read-only_|string(uuid)
+|===
+
+
+[[_product]]
+=== product
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|*categories* +
+_optional_|< string > array
+|*created* +
+_required_ +
+_read-only_|integer(int64)
+|*description* +
+_optional_ +
+_read-only_|string
+|*etag* +
+_required_ +
+_read-only_|string
+|*externalReference* +
+_optional_ +
+_read-only_|string
+|*imageLookupKeys* +
+_optional_|< string > array
+|*modifierSetUuids* +
+_optional_|< string(uuid) > array
+|*name* +
+_required_ +
+_read-only_|string
+|*updated* +
+_required_ +
+_read-only_|integer(int64)
+|*updatedBy* +
+_optional_ +
+_read-only_|string(uuid)
+|*uuid* +
+_required_ +
+_read-only_|string(uuid)
+|*variants* +
+_optional_|< <<_variant,variant>> > array
+|===
+
+
+[[_variant]]
+=== variant
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|*barcode* +
+_optional_ +
+_read-only_|string
+|*costPrice* +
+_optional_|<<_price,Price>>
+|*defaultQuantity* +
+_optional_ +
+_read-only_|enum (1)
+|*description* +
+_optional_ +
+_read-only_|string
+|*name* +
+_optional_ +
+_read-only_|string
+|*price* +
+_optional_|<<_price,Price>>
+|*sku* +
+_optional_ +
+_read-only_|string
+|*unitName* +
+_optional_ +
+_read-only_|string
+|*uuid* +
+_required_ +
+_read-only_|string(uuid)
+|*vatPercentage* +
+_optional_ +
+_read-only_|string
+|===
+
+
+
