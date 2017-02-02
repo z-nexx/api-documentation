@@ -406,7 +406,7 @@ purchaseUUID:: The UUID of the purchase
 ```
 
 ### Discounts
-Discounts can exist both on a specific row of items in the shopping cart, as well as on the entire shopping cart. A discount can be set either as a percentage or as a fixed value.
+Discounts can exist both on a specific row of items in the shopping cart, as well as on the entire shopping cart. Discounts on a row of items is applied on the whole amount of the row. A discount can be set either as a percentage or as a fixed value.
 
 When applying the total discounts on the purchase price, the row discounts will first be applied, followed by the cart discount which is then applied on the sum of the already discounted row prices.
 
@@ -418,6 +418,7 @@ Row discounts are expressed using the following JSON structure in the `products`
 },
 "discountValue": 1000
 ```
+*Note:* Currently, we only support one discount per row of items, so the `quantity` field will always be set to 1. This could potentially change in the future.
 
 Cart discounts are expressed using the following JSON structure in the root structure of the purchase. They can also contain either an `amount` or a `percentage` value:
 ```json
@@ -428,7 +429,9 @@ Cart discounts are expressed using the following JSON structure in the root stru
     "quantity": 1
 }
 ```
-Currently, we only support one discount per cart, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future. See further below for a full response example containing discounts.
+*Note:* Currently, we only support one discount per cart, so the `discounts` list will only contain one item with `quantity` set to 1. This could potentially change in the future.
+
+See further below for a full response example containing discounts.
 
 #### Example
 Lets observe an example purchase, containing both discounts on rows as well as on the cart itself:
