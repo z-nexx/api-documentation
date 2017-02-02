@@ -1,0 +1,12 @@
+## Inventory Service API
+
+### URL
+Production:: https://inventory.izettle.com
+
+### Description
+The Inventory Service keeps track of the stock level of products. In the API clients can list current stock levels and update balance for products. The service automatically decrease the stock when a purchase is created. Currently the API is only available in the production environment requiring production credentials to access.
+
+A test environment will be made available soon, in the mean time integrators with production credentials can try out the API by creating their own iZettle account.
+
+### Documentation
+API documentation can be found here: https://inventory.izettle.com/swagger
