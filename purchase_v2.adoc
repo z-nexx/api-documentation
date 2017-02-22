@@ -13,7 +13,7 @@ link:purchase.adoc[*version 1 documentation*]
 
 The following endpoints exist in *_version 2_*. Any endpoints that exist in *_version 1_* but are not represented in *_version 2_* can still be accessed through the *_version 1_* API.
 
-All parameters and behaviours are the same as for *_version 1_*
+All parameters and behaviours, except for the representation of payments, are the same as for *_version 1_*
 
 Purchase history:: `GET /purchases/v2`
 Purchase details:: `GET /purchase/v2/{purchaseUUID}`
