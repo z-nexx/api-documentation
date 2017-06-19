@@ -7,3 +7,4 @@
  - [Purchase](purchase.adoc)
  - [Product Library](product-library.adoc)
  - [Inventory](inventory.adoc)
+ - [Image](image.adoc)
