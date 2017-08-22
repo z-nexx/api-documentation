@@ -4,6 +4,9 @@
 Test:: https://finance-pa.izettletest.com
 Production:: https://finance.izettle.com
 
+### Account Type Group
+The endpoints below can be called for either the `LIQUID` or `PRELIMINARY` account type groups. The `LIQUID` group contains transactions that has been cleared and is typically what is useful for an external integrator. The `PRELIMINARY` group contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
+
 ### Account balance
 `GET organizations/us/accounts/{accountTypeGroup}/balance`
 
