@@ -2,7 +2,7 @@
 # Frequently Asked Questions
 This document contains answers to the most asked questions, if you have questions that are not answered
 in this document please refer to using our api-team email address: api@izettle.com .
-If you want to apply to receive access to our APIs, please fill in the form [here](https://docs.google.com/forms/d/e/1FAIpQLScdU9DDPfd680vhyZYAZ6DMIydQ1ikAOwP4abF2NWra5A-j8w/viewform)
+If you want to apply to receive access to our APIs, please fill in the form [here]( https://www.izettle.com/api-access/)
 and we will come back to you with your credentials.
 
 ---
@@ -21,8 +21,7 @@ ___
 > Do you provide any test environment accounts?
 
 ##### Answer:
-> Unfortunately we do not at this time, there are however test accounts in production that you can use.
-This is something we are working on, the test accounts can be found [Here](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc).
+> Unfortunately we do not at this time, This is something we are working on to improve.
 
 ___
 ##### Question:
@@ -39,11 +38,11 @@ and [Here](https://stackoverflow.com/questions/2964687/how-to-handle-100-continu
 ___
 ### [OAuth](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc)
 ##### Question:
-> Once I have a Authorization token, how do I use it to authenticate myself?
+> Once I have a Access token, how do I use it to authenticate myself?
 
 ##### Answer:
-> The Authorization token is passed through the `Authorization` header with the format:
-`Authorization: Bearer <Token>`. Also note that you on most services can use the __self__
+> The Access token is passed through the `Authorization` header with the format:
+`Authorization: Bearer <Token>`. Also note that on most services you can use the __self__
 filter instead of `{organizationUuid}`
 
 ___
