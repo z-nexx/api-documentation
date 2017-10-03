@@ -1,75 +1,100 @@
+image::https://d15n4q3o4x3svq.cloudfront.net/assets/tutorials/curl/api-a397cc184c5622fb5130af1b7baf149d.png[API,150,150]
 
-# Frequently Asked Questions
+= Frequently Asked Questions
+
+
+****
 This document contains answers to the most asked questions, if you have questions that are not answered
 in this document please refer to using our api-team email address: api@izettle.com .
-If you want to apply to receive access to our APIs, please fill in the form [here]( https://www.izettle.com/api-access/)
+If you want to apply to receive access to our APIs, please fill in the form https://www.izettle.com/api-access/[Here]
 and we will come back to you with your credentials.
+****
+'''
 
----
-
-### General questions
-##### Question:
-> Does it cost anything to use your open APIs and is there some restriction on the API?
-
-##### Answer:
-
-> No, its completely free to use our API and the only limitation is that some resources and
+=== General questions
+Question::
+====
+Does it cost anything to use your open APIs and is there some restriction on the API?
+====
+Answer::
+====
+No, its completely free to use our API and the only limitation is that some resources and
 services might have rate-limiting enabled to prevent overload.
-
-___
-##### Question:
-> Do you provide any test environment accounts?
-
-##### Answer:
-> Unfortunately we do not at this time, This is something we are working on to improve.
-
-___
-##### Question:
-> Why do i receive `HTTP 100 Continue`  responses sometimes?
-
-##### Answer:
-
-> This is something our framework sends when it has received the request headers and
+====
+'''
+Question::
+====
+Do you provide any test environment accounts?
+====
+Answer::
+====
+Unfortunately we do not at this time, This is something we are working on to improve.
+====
+'''
+Question::
+====
+Why do i receive `HTTP 100 Continue`  responses sometimes?
+====
+Answer::
+====
+This is something our framework sends when it has received the request headers and
 indicates that the client should proceed to send the request body. What you can do is investigate
  the reason why your code does this, or you could traverse the headers until
-you find a header with the intended response code, examples [Here](https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey)
-and [Here](https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message).
+you find a header with the intended response code, examples https://stackoverflow.com/questions/14526627/double-http-status-header-on-http-post-to-jersey[Here]
+and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-message[Here].
+====
 
-___
-### [OAuth](https://github.com/iZettle/api-documentation/blob/master/authorization.adoc)
-##### Question:
-> Once I have a Access token, how do I use it to authenticate myself?
+'''
+=== https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth]
 
-##### Answer:
-> The Access token is passed through the `Authorization` header with the format:
-`Authorization: Bearer <Token>`. Also note that on most services you can use the __self__
+Question::
+====
+Once I have a Access token, how do I use it to authenticate myself?
+====
+
+Answer::
+====
+The Access token is passed through the `Authorization` header with the format:
+`Authorization: Bearer <Token>`. Also note that on most services you can use the *_self_*
 filter instead of `{organizationUuid}`
+====
+'''
+=== https://github.com/iZettle/api-documentation/blob/master/finance.adoc[Finance]
+===== More to come...
+'''
+=== https://github.com/iZettle/api-documentation/blob/master/purchase.adoc[Purchase]
+===== More to come...
+'''
+=== https://github.com/iZettle/api-documentation/blob/master/product-library.adoc[Product Library]
+===== More to come...
+'''
+=== https://github.com/iZettle/api-documentation/blob/master/inventory.adoc[Inventory]
+===== More to come...
+'''
 
-___
-### [Finance](https://github.com/iZettle/api-documentation/blob/master/finance.adoc)
-##### More to come...
-___
-### [Purchase](https://github.com/iZettle/api-documentation/blob/master/purchase.adoc)
-##### More to come...
-___
-### [Product Library](https://github.com/iZettle/api-documentation/blob/master/product-library.adoc)
-##### More to come...
-___
-### [Inventory](https://github.com/iZettle/api-documentation/blob/master/inventory.adoc)
-##### More to come...
-___
+=== https://github.com/iZettle/api-documentation/blob/master/image.adoc[Image Service]
+Question::
+====
+I cannot upload images using byte arrays.
+====
+Answer::
+====
+In the Swagger documentation it specifies the data as a array of String, this is not true, make sure that
+The byte array is in the form:
 
+[source]
+--
+"imageData": [-1, -40, -1, -31, 0, 24, 69, 120, 105]
+--
 
-### [Image Service](https://github.com/iZettle/api-documentation/blob/master/image.adoc)
-##### Question:
-> I cannot upload images using byte arrays.
+and not:
 
-##### Answer:
-> In the Swagger documentation it specifies the data as a array of `String`this is not true, make sure that
-The byte array is in the form: ` "imageData": [-1, -40, -1, -31, 0, 24, 69, 120, 105]` and not
-` "imageData": "[-1, -40, -1, -31, 0, 24, 69, 120, 105]"`
+[source]
+--
+"imageData": "[-1, -40, -1, -31, 0, 24, 69, 120, 105]"
+--
+====
+'''
+=== Web hooks
 
-___
-### [Webhooks]()
-
-##### More to come...
+===== More to come...
