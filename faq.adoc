@@ -1,4 +1,4 @@
-<a href="url"><img src="https://d15n4q3o4x3svq.cloudfront.net/assets/tutorials/curl/api-a397cc184c5622fb5130af1b7baf149d.png" height="150" width="150" ></a>
+
 # Frequently Asked Questions
 This document contains answers to the most asked questions, if you have questions that are not answered
 in this document please refer to using our api-team email address: api@izettle.com .
