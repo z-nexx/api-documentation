@@ -1,8 +1,12 @@
 ## Purchase API V1
 
+### Service Description
+The purchase API provides information about a purchases made through the iZettle point-of-sale.
+
 ### URL
-Test:: https://purchase-pa.izettletest.com
-Production:: https://purchase.izettle.com
+https://purchase.izettle.com
+
+---
 
 === Version 2
 There is a version 2 of this API. The only difference is in how payments are represented. In order to be sure to get all purchases, including those paid with invoices, you need to use version 2. Follow the link below for more detailed documentation.

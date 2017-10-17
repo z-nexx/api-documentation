@@ -1,22 +1,26 @@
 ## Finance API
 
+### Service Description
+The Finance service contains information about monetary transactions where money has passed through iZettle, such transactions can be for example card payments, card fees and payouts to the customer. See the section "Account Transactions" below for details.
+
 ### URL
-Test:: https://finance-pa.izettletest.com
-Production:: https://finance.izettle.com
+https://finance.izettle.com
+
+---
 
 ### Account Type Group
 The endpoints below can be called for either the `LIQUID` or `PRELIMINARY` account type groups. The `LIQUID` group contains transactions that has been cleared and is typically what is useful for an external integrator. The `PRELIMINARY` group contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
 
-### Account balance
+### Account Balance
 `GET organizations/us/accounts/{accountTypeGroup}/balance`
 
 accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
 until (optional):: used to get the balance at a specific point in history (ignoring any later transactions).
 
-#### Permissions required
+#### Permissions Required
 `READ:FINANCE`
 
-#### Example response
+#### Example Response
 `GET organizations/us/accounts/PRELIMINARY/balance`
 
 ```json
@@ -28,7 +32,7 @@ until (optional):: used to get the balance at a specific point in history (ignor
 }
 ```
 
-### Account transactions
+### Account Transactions
 `GET organizations/us/accounts/{accountTypeGroup}/transactions`
 
 accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
@@ -63,10 +67,10 @@ end:: an end point in time, limiting the result set (exclusive).
 limit (optional):: Limit the result set to X number of results.
 offset (optional):: Offset the result set by X number of results.
         
-#### Permissions required
+#### Permissions Required
 `READ:FINANCE`
 
-#### Example response
+#### Example Response
 `GET organizations/us/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
 
 ```json
@@ -105,7 +109,7 @@ offset (optional):: Offset the result set by X number of results.
         ...
 ```
 
-### Link finance transactions with card purchases
+### Link Finance Transactions With Card Purchases
 Finance transactions of types `CARD_PAYMENT`, `CARD_PAYMENT_FEE`, `CARD_REFUND` and `CARD_PAYMENT_FEE_REFUND` can be linked using the field `originatingTransactionUuid` to a card purchase using the field `cardPaymentUUID1` in the Purchase API: https://github.com/iZettle/api-documentation/blob/master/purchase.adoc.
 
 In the case of other transaction types, the value of the `originatingTransactionUuid` is not linkable to a specific card purchase and is not useful for external integrators.
