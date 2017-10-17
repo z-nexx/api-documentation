@@ -1,17 +1,23 @@
 ## Inventory Service API
 
-### URL
-Production:: https://inventory.izettle.com
+### Service Description
+The Inventory Service keeps track of the stock level for variants within products. The API clients can list current stock levels and update balance for products. The service automatically decrease the stock when a purchase is made within the iZettle POS application.
 
-### Description
-The Inventory Service keeps track of the stock level for variants within products. The API clients can list current stock levels and update balance for products. The service automatically decrease the stock when a purchase is made within the iZettle POS application. Currently the API is only available in the production environment requiring production credentials to access, which you can
-apply for [here](https://docs.google.com/forms/d/e/1FAIpQLScdU9DDPfd680vhyZYAZ6DMIydQ1ikAOwP4abF2NWra5A-j8w/viewform).
+### URL
+https://inventory.izettle.com
+
+### API Documentation
+https://inventory.izettle.com/swagger
+
+---
+
 
 For inventory we use a concept of transactions, where we always move stock between so called `Locations`.
 Locations are created automatically when tracking is enabled on any product. The locations that currently exists and the natural flow of stock balance is shown below:
 ```
-                              > BIN
-SUPPLIER > STORE  > SOLD
+                  > BIN
+SUPPLIER > STORE
+                  > SOLD
 ```
 `SUPPLIER` is an abstraction of a supplier and holds infinite stock.
 
@@ -46,8 +52,3 @@ I have 30 in stock and want to set to 40, then we move 10 stock from SUPPLIER to
   "change": 10
  ```
 
-
-A test environment will be made available soon, in the mean time integrators with production credentials can try out the API by creating their own iZettle account.
-
-### Documentation
-API documentation can be found here: https://inventory.izettle.com/swagger
