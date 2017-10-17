@@ -31,24 +31,26 @@ If you want to set an absolute value to a variant you need to calculate the chan
 #### Example 1:
 `PUT /organizations/{organizationUuid}/inventory`
 
- I have 30 stock in `STORE` and I want to set that to 20.
- Then I move 10 stock to `SOLD , BIN or SUPPLIER` location (depending on the reason for the stock change), note that we always move positive numbers.
- ```json
+I have 30 stock in `STORE` and I want to set that to 20. Then I move 10 stock to `SOLD`, `BIN` or `SUPPLIER` location (depending on the reason for the stock change), note that we always move positive numbers.
+
+```
   "productUuid": <uuid>
   "variantUuid": <uuid>,
   "fromLocationUuid": <STORE_location_uuid>,
   "toLocationUuid": “<SOLD_location_uuid>,
   "change": 10
- ```
+```
+
 #### Example 2:
 `PUT /organizations/{organizationUuid}/inventory`
 
-I have 30 in stock and want to set to 40, then we move 10 stock from SUPPLIER to STORE
- ```json
+I have 30 in stock and want to set to 40, then we move 10 stock from `SUPPLIER` to `STORE`
+
+```
   "productUuid": <uuid>
   "variantUuid": <uuid>,
   "fromLocationUuid": <SUPPLIER_location_uuid>,
   "toLocationUuid": “<STORE_location_uuid>,
   "change": 10
- ```
+```
 
