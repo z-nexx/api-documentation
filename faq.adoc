@@ -14,21 +14,21 @@ and we will come back to you with your credentials.
 === General questions
 Question::
 ====
+Do you provide any test or sandbox environment?
+====
+Answer::
+====
+Unfortunately we do not at this time, This is something we are working on to improve.
+====
+'''
+Question::
+====
 Does it cost anything to use your open APIs and is there some restriction on the API?
 ====
 Answer::
 ====
 No, its completely free to use our API and the only limitation is that some resources and
 services might have rate-limiting enabled to prevent overload.
-====
-'''
-Question::
-====
-Do you provide any test environment accounts?
-====
-Answer::
-====
-Unfortunately we do not at this time, This is something we are working on to improve.
 ====
 '''
 Question::
