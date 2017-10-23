@@ -12,30 +12,22 @@ and we will come back to you with your credentials.
 '''
 
 === General questions
-Question::
+**How do I take payments through the iZettle API?**
 ====
-Do you provide any test or sandbox environment?
+It is not possible to take payments through the API. However we do have an iOS SDK which supports taking payments here: https://github.com/iZettle/sdk-ios There is currently no support for Android.
 ====
-Answer::
+**Do you provide any test or sandbox environment?**
 ====
 Unfortunately we do not at this time, This is something we are working on to improve.
 ====
 '''
-Question::
-====
-Does it cost anything to use your open APIs and is there some restriction on the API?
-====
-Answer::
+**Does it cost anything to use your open APIs and is there some restriction on the API?**
 ====
 No, its completely free to use our API and the only limitation is that some resources and
 services might have rate-limiting enabled to prevent overload.
 ====
 '''
-Question::
-====
-Why do i receive `HTTP 100 Continue`  responses sometimes?
-====
-Answer::
+**Why do i receive `HTTP 100 Continue`  responses sometimes?**
 ====
 This is something our framework sends when it has received the request headers and
 indicates that the client should proceed to send the request body. What you can do is investigate
@@ -46,13 +38,7 @@ and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-
 
 '''
 === https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth]
-
-Question::
-====
-Once I have a Access token, how do I use it to authenticate myself?
-====
-
-Answer::
+**Once I have a Access token, how do I use it to authenticate myself?**
 ====
 The Access token is passed through the `Authorization` header with the format:
 `Authorization: Bearer <Token>`. Also note that on most services you can use the *_self_*
@@ -73,11 +59,7 @@ filter instead of `{organizationUuid}`
 '''
 
 === https://github.com/iZettle/api-documentation/blob/master/image.adoc[Image Service]
-Question::
-====
-I cannot upload images using byte arrays.
-====
-Answer::
+**I cannot upload images using byte arrays.**
 ====
 In the Swagger documentation it specifies the data as a array of String, this is not true, make sure that
 The byte array is in the form:
