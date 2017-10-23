@@ -6,6 +6,9 @@ The Finance service contains information about monetary transactions where money
 ### URL
 https://finance.izettle.com
 
+### API Documentation
+https://finance.izettle.com/swagger
+
 ---
 
 ### Account Type Group
