@@ -80,12 +80,14 @@ The *_version 2_* API guarantees that all payments are represented in the generi
 }
 ----
 
-In addition to `IZETTLE_CARD`, `IZETTLE_CASH` and `IZETTLE_INVOICE`, there is also payment types of `SWISH`, `VIPPS` and `MOBILE_PAY`. 
+In addition to `IZETTLE_CARD`, `IZETTLE_CASH` and `IZETTLE_INVOICE`, there is also payment types of `SWISH`, `VIPPS` and `MOBILE_PAY`.
 
 === Payment attributes
 The *_version 1_* cardPayment and cashPayment data types contain all parameters required to represent a card or a cash payment. The generic `payment` data type only contain a few generic parameters such as `uuid`, `amount` and `type`. To be able to represent all types of payments it has an `attributes` map that contain all payment type specific data such as `maskedPan` or `cardType` for card payments or `handedAmount` for cash payments.
 
-._example of generic cash payment_
+Other payments such as Swish, Vipps and MobilePay don't have attributes. They will only be represented by a `uuid`, an `amount` and a `type`.
+
+._example of cash payment_
 ----
 {
   "uuid": "ce90dc90-dcaa-11e6-87a4-0cd119752226",
@@ -97,7 +99,7 @@ The *_version 1_* cardPayment and cashPayment data types contain all parameters 
 }
 ----
 
-._example of generic card payment_
+._example of card payment_
 ----
 {
   "uuid": "165b88a0-07a3-11e6-9dae-43c30f1bff5b",
@@ -114,6 +116,20 @@ The *_version 1_* cardPayment and cashPayment data types contain all parameters 
     "terminalVerificationResults": "0080088000",
     "applicationIdentifier": "A0000000031010",
     "applicationName": "Visa Credit"
+  }
+}
+----
+
+._example of invoice payment_
+----
+{
+  "uuid": "d65ebf50-979e-11e7-9f72-df4bb64e0df9",
+  "amount": 2960,
+  "type": "IZETTLE_INVOICE",
+  "attributes": {
+    "orderUUID": "d5b126c4-979e-11e7-9af0-a3d2806c42a1",
+    "invoiceNr": "iz37",
+    "dueDate": "2017-10-12"
   }
 }
 ----
