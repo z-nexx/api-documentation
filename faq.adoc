@@ -45,6 +45,21 @@ The Access token is passed through the `Authorization` header with the format:
 filter instead of `{organizationUuid}`
 ====
 '''
+====
+**Do I need my organization uuid when accessing some of the apis?**
+====
+You can either use the *_self_* filter: see this documentation for details on how, the other option is to call 
+--
+GET https://oauth.izettle.net/users/me
+Example response
+
+{
+    "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014",
+    "organizationUuid": "ab305d54-75b4-431b-adb2-eb6b9e546013"
+}
+--
+====
+'''
 === https://github.com/iZettle/api-documentation/blob/master/finance.adoc[Finance]
 ===== More to come...
 '''
