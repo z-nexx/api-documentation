@@ -24,11 +24,24 @@ services might have rate-limiting enabled to prevent overload.
 '''
 Question::
 ====
-Do you provide any test environment accounts?
+Can I use the credentials access in test environment or do you provide any test environment accounts?
 ====
 Answer::
 ====
-Unfortunately we do not at this time, This is something we are working on to improve.
+Unfortunately we do not support this at this time, you will have to use your credentials in the production environment. This is something we are working on to improve.
+====
+'''
+Question::
+====
+What url should I redirect to?
+====
+Answer::
+====
+Our API follows OAuth 2.0 for the authentication flow. This means that the redirect URI is always going to be the same, and that's the one you provided when filling in our form. In your case, it's a generic https://httpbin.org/get address. It's a simple test server that shows all the parameters of the request. Once you have been redirected there you can manually copy the authorization code to use. Let us know when you have implemented a real redirect endpoint and we will change it accordingly on our side.
+
+You should replace client_id in that example request with the client_id we provided in the previous email, so it would look like this:
+
+{{URL}}/authorize?response_type=code&client_id=ac01fc1f-0b0d-4687-9af6-6ce525fb5f39&scope=READ:FINANCE%20READ:PURCHASE&redirect_uri=https://httpbin.org/get
 ====
 '''
 Question::
