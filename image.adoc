@@ -1,16 +1,20 @@
-## image Service API
+## Image Service API
 
-### URL
-Production:: https://image.izettle.com/v2/images/
-
-### Description
-
+### Service Description
 Image Service API allows uploading of product images to be stored and used within the iZettle applications.
 The service returns a `imageLookupKey` that can be added to a desired product using the Product Library API.
 The images can be uploaded using a byte array or a static URL, the image will be eventually available for lookup from
 within the iZettle apps or via the `imageUrls` returned by the service (See Swagger documentation for upload restrictions).
 
-#### Example request
+### URL
+https://image.izettle.com/v2/images
+
+### API Documentation
+https://image.izettle.com/v2/images/swagger
+
+---
+
+### Example Request
 
 `POST https://image.izettle.com/v2/images/organizations/{organizationUuid}/products`
 ```json
@@ -21,7 +25,7 @@ within the iZettle apps or via the `imageUrls` returned by the service (See Swag
 }
 ```
 
-#### Example response
+### Example Response
 
 ```json
 {
@@ -36,6 +40,3 @@ Where `o` is a `2000*2000px` and `L` is a `560*560px` image.
 
 
 A test environment will be made available soon, in the mean time integrators with production credentials can try out the API by creating their own iZettle account.
-
-### Documentation
-API documentation can be found here: https://image.izettle.com/v2/images/swagger

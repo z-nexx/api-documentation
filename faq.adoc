@@ -12,30 +12,22 @@ and we will come back to you with your credentials.
 '''
 
 === General questions
-Question::
+**How do I take payments through the iZettle API?**
 ====
-Does it cost anything to use your open APIs and is there some restriction on the API?
+It is not possible to take payments through the API. However we do have an iOS SDK which supports taking payments here: https://github.com/iZettle/sdk-ios There is currently no support for Android.
 ====
-Answer::
+**Do you provide any test or sandbox environment?**
+====
+Unfortunately we do not at this time, This is something we are working on to improve.
+====
+'''
+**Does it cost anything to use your open APIs and is there some restriction on the API?**
 ====
 No, its completely free to use our API and the only limitation is that some resources and
 services might have rate-limiting enabled to prevent overload.
 ====
 '''
-Question::
-====
-Do you provide any test environment accounts?
-====
-Answer::
-====
-Unfortunately we do not at this time, This is something we are working on to improve.
-====
-'''
-Question::
-====
-Why do i receive `HTTP 100 Continue`  responses sometimes?
-====
-Answer::
+**Why do i receive `HTTP 100 Continue`  responses sometimes?**
 ====
 This is something our framework sends when it has received the request headers and
 indicates that the client should proceed to send the request body. What you can do is investigate
@@ -46,19 +38,32 @@ and https://stackoverflow.com/questions/2964687/how-to-handle-100-continue-http-
 
 '''
 === https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth]
-
-Question::
-====
-Once I have a Access token, how do I use it to authenticate myself?
-====
-
-Answer::
+**Once I have a Access token, how do I use it to authenticate myself?**
 ====
 The Access token is passed through the `Authorization` header with the format:
 `Authorization: Bearer <Token>`. Also note that on most services you can use the *_self_*
 filter instead of `{organizationUuid}`
 ====
 '''
+====
+**Do I need my organization uuid when accessing some of the apis?**
+====
+You can either use the *_self_* filter: see this documentation for details on how, the other option is to call
+[source]
+--
+GET https://oauth.izettle.net/users/me
+Example response
+
+{
+    "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014",
+    "organizationUuid": "ab305d54-75b4-431b-adb2-eb6b9e546013"
+}
+
+--
+See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[OAuth] for more info.
+
+'''
+
 === https://github.com/iZettle/api-documentation/blob/master/finance.adoc[Finance]
 ===== More to come...
 '''
@@ -66,18 +71,38 @@ filter instead of `{organizationUuid}`
 ===== More to come...
 '''
 === https://github.com/iZettle/api-documentation/blob/master/product-library.adoc[Product Library]
-===== More to come...
+====
+**I'm using your API to create Products on Izettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?**
+[source]
+--
+ "imageLookupKeys": [
+    "string" what should i put here?
+  ],
+  "presentation": {
+    "imageUrl": "string", i should put the created image url?
+    "backgroundColor": "string",
+    "textColor": "string"
+  },
+--
+====
+The image api will return a imageUrl back which can be directly put into the _presentation.imageUrl_ field, however we just introduced this and is not fully supported by the portal and the apps yet.  
+
+So if you only want to use the information outside of the iZettle apps you might want to use  _presentation.imageUrl_, otherwise use  _imageLookupKeys_ and strip away everything except the last part of the imageUrl and place for example `Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEmQ.jpeg` in the imageLookupKeys to be able to see the image in the izettle-apps.
+
+Clarification examples:
+[source]
+--
+imageLookupKeys: ["Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg”]
+"presentation" : {
+      “imageUrl”: "https://image.izettle.com/v2/images/o/Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg"
+--
 '''
 === https://github.com/iZettle/api-documentation/blob/master/inventory.adoc[Inventory]
 ===== More to come...
 '''
 
 === https://github.com/iZettle/api-documentation/blob/master/image.adoc[Image Service]
-Question::
-====
-I cannot upload images using byte arrays.
-====
-Answer::
+**I cannot upload images using byte arrays.**
 ====
 In the Swagger documentation it specifies the data as a array of String, this is not true, make sure that
 The byte array is in the form:

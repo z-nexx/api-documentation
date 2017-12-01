@@ -1,12 +1,12 @@
 ## Product Library API
 
+### Service Description
+The product library API provides information about a merchant's products.
+
 ### URL
-Production:: https://products.izettle.com
+https://products.izettle.com
 
-### Description
-The product library API provides information about a merchant's products. Currently the API is only available in the production environment requiring production credentials to access.
+### API Documentation
+https://products.izettle.com/swagger
 
-A test environment will be made available soon, in the mean time integrators with production credentials can try out the API by creating their own iZettle account and add products to their product library.
-
-### Documentation
-API documentation can be found here: https://products.izettle.com/swagger
+---

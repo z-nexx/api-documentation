@@ -1,20 +1,12 @@
 ## Authorization OAuth2 API
 
-### Environments
-The test environment is hosted at https://oauth-pa.izettletest.com and has the following users:
+### Service Description
+The Authorization service implements the OAuth 2.0 protocol. It handles merchant authorization of external integrators and issues access tokens used by authorized clients to call the other parts of the iZettle API.
 
-[options="header"]
-|===
-| Username / e-mail | Password | Comment
-| testuser1@izettletest.com | passw0rd | A user in Sweden
-| testuser1-no@izettletest.com | passw0rd | A user in Norway
-| testuser1-de@izettletest.com | passw0rd | A user in Germany
-| testuser1-es@izettletest.com | passw0rd | A user in Spain
-| testuser1-uk@izettletest.com | passw0rd | A user in the UK
-| testuser-refund@izettletest.com | passw0rd | A user with refunded purchases
-|===
+### URL
+https://oauth.izettle.net
 
-The production environment is hosted at https://oauth.izettle.net.
+---
 
 ### Introduction
 The OAuth API implements the OAuth 2.0 Authorization Framework (https://tools.ietf.org/html/rfc6749[RFC 6749]). For an external integrator, there are two different grant types that are of interest, the authorization code grant and the password grant. Both grant types are described below. 
@@ -152,15 +144,13 @@ Bearer error="invalid_request", error_description="ACCESS_TOKEN_EXPIRED"
 
 Note: Not all services are not currently using the error code `ACCESS_TOKEN_EXPIRED` as the content of the `error_description` field, but rather the clear text value "The access token has expired". This will change over time and eventually all services will use the `ACCESS_TOKEN_EXPIRED`.
 
-## Authorization API
+### Utility Endpoints
 
-### Get user info
+#### Get user info
 
 `GET users/me`
 
-#### Permissions required
-
-#### Example response
+##### Example response
 ```json
 {
     "uuid": "de305d54-75b4-431b-adb2-eb6b9e546014",
