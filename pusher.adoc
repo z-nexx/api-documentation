@@ -1,0 +1,10 @@
+## Pusher service API
+
+### Service Description
+Pusher is a service that "pushes" information to other services, currently we only support _Webhooks_.
+
+### URL
+https://pusher.izettle.com
+
+### API Documentation
+https://pusher.izettle.com/swagger
