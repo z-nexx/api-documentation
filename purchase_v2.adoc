@@ -101,9 +101,14 @@ Other payments such as Swish, Vipps and MobilePay don't have attributes. They wi
 
 ._example of card payment_
 ----
+"purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
+"amount": 2000,
+"gratuityAmount": 0,
+...
 {
   "uuid": "165b88a0-07a3-11e6-9dae-43c30f1bff5b",
   "amount": 2000,
+  "gratuityAmount": 0,
   "type": "IZETTLE_CARD",
   "attributes": {
     "transactionStatusInformation": "EC00",
@@ -133,3 +138,7 @@ Other payments such as Swish, Vipps and MobilePay don't have attributes. They wi
   }
 }
 ----
+
+_Note_: `gratuityAmount` corresponds to the tipping amount in the purchase. This
+feature is not available in all countries. When the `gratuityAmount` is set, the
+card payment amount will include the gratuity amount.
