@@ -9,6 +9,7 @@
  - [Product Library](product-library.adoc)
  - [Inventory](inventory.adoc)
  - [Image](image.adoc)
+ - [Pusher (Webhooks)](pusher.adoc)
 
 ## Credentials
 Apply for API credentials here: https://www.izettle.com/api-access/

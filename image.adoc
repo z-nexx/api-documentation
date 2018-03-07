@@ -6,6 +6,8 @@ The service returns a `imageLookupKey` that can be added to a desired product us
 The images can be uploaded using a byte array or a static URL, the image will be eventually available for lookup from
 within the iZettle apps or via the `imageUrls` returned by the service (See Swagger documentation for upload restrictions).
 
+`NOTE: JPG does not exist as an imageFormat, you must use JPEG for .jpg images`
+
 ### URL
 https://image.izettle.com/v2/images
 
