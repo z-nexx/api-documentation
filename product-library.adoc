@@ -35,7 +35,7 @@ https://products.izettle.com/swagger/#!/products/createProduct
       "name": "VariantName",
       "description": "Description of variant",
       "sku": "SKU",
-      "barcode": "Barcode"
+      "barcode": "Barcode",
       "price": {
         "amount": 10,
         "currencyId": "SEK"
