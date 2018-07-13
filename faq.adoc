@@ -12,6 +12,10 @@ and we will come back to you with your credentials.
 '''
 
 === General questions
+**What TSL version is supported?**
+====
+We are using TSL 1.2 for the moment.
+====
 **How do I take payments through the iZettle API?**
 ====
 It is not possible to take payments through the API. However we do have an iOS SDK which supports taking payments here: https://github.com/iZettle/sdk-ios There is currently no support for Android.
