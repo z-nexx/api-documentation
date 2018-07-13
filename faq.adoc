@@ -12,9 +12,9 @@ and we will come back to you with your credentials.
 '''
 
 === General questions
-**What TSL version is supported?**
+**What TLS version is supported?**
 ====
-We are using TSL 1.2 for the moment.
+We are using TLS 1.2 for the moment.
 ====
 **How do I take payments through the iZettle API?**
 ====
