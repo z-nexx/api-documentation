@@ -1,4 +1,4 @@
-# iZettle HTTP API
+# iZettle GO HTTP API (Not for iZettle PRO for hospitality)
  [Frequently Asked Questions](faq.adoc)
 
 ## APIs
