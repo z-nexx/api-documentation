@@ -50,6 +50,18 @@ in the form: `"eventNames" : ["PurchaseCreated","ProductCreated"] ` etc.
 `contactEmail`: If the webhook fails we will automatically send an email to this address, so make sure it goes to the correct person.
 
 
+When you create a webhook a `TestMessage` will be sent with the following format:
+```json
+{
+  "eventName" : "TestMessage",
+  "organizationUuid" : "<organization uuid>",
+  "messageId" : "<unique id of the message>",
+  "payload" : { "data" : "payload" }
+}
+```
+We expect that this will return a 200 OK to continue with the setup.
+
+
 ### Managing Webhooks
 
 To edit your webhooks you need to delete and recreate them, use these endpoints to do that.
