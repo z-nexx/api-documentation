@@ -26,7 +26,7 @@ SUPPLIER > STORE
 `BIN & SOLD` are abstractions for when a product is sold or discarded.
 
 An important note is that you cannot directly set a stock balance for a variant.
-If you want to set an absolute value to a variant you need to calculate the change needed to reach that stock value.
+If you want to set an absolute value of a variant you need to calculate the change needed to reach that stock value.
 
 #### Example 1:
 `PUT /organizations/{organizationUuid}/inventory`
