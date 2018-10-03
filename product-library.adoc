@@ -12,7 +12,7 @@ https://products.izettle.com/swagger
 ---
 ### Example Requests
 #### Create product
-`POST https://products.izettletest.com/organizations/self/products`
+`POST /organizations/self/products`
 
 https://products.izettle.com/swagger/#!/products/createProduct
 ```json
@@ -54,7 +54,7 @@ https://products.izettle.com/swagger/#!/products/createProduct
 ---
 
 #### Update product
-`PUT https://products.izettletest.com/organizations/self/products/v2/{productUuid}`
+`PUT /organizations/self/products/v2/{productUuid}`
 
 https://products.izettle.com/swagger/#!/products/updateFullProduct
 

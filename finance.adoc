@@ -15,7 +15,7 @@ https://finance.izettle.com/swagger
 The endpoints below can be called for either the `LIQUID` or `PRELIMINARY` account type groups. The `LIQUID` group contains transactions that has been cleared and is typically what is useful for an external integrator. The `PRELIMINARY` group contains transactions that are waiting to be cleared and there can exist several transactions for one single card payment in this group due to internal account movements.
 
 ### Account Balance
-`GET organizations/us/accounts/{accountTypeGroup}/balance`
+`GET /organizations/us/accounts/{accountTypeGroup}/balance`
 
 accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
 until (optional):: used to get the balance at a specific point in history (ignoring any later transactions).
@@ -24,7 +24,7 @@ until (optional):: used to get the balance at a specific point in history (ignor
 `READ:FINANCE`
 
 #### Example Response
-`GET organizations/us/accounts/PRELIMINARY/balance`
+`GET /organizations/us/accounts/PRELIMINARY/balance`
 
 ```json
 {
@@ -36,7 +36,7 @@ until (optional):: used to get the balance at a specific point in history (ignor
 ```
 
 ### Account Transactions
-`GET organizations/us/accounts/{accountTypeGroup}/transactions`
+`GET /organizations/us/accounts/{accountTypeGroup}/transactions`
 
 accountTypeGroup:: Which accounts types to get data from. Either `LIQUID` or `PRELIMINARY`.
 includeTransactionType:: Which transaction types to include. Multiple values allowed. Valid values:
@@ -59,14 +59,14 @@ FEE_DISCOUNT_REVOCATION::: An internal reclaim of outstanding fee discount money
 CARD_PAYMENT_FEE::: References the commission part of a card payment.
 CARD_PAYMENT_FEE_REFUND::: References the commission part of a refund.
 ADVANCE::: References the cash advance given by iZettle to a merchant.
-A cash advance is a type of financing that is offered to merchant's based on their sales history. The advance is paid back with monthly downpayments.
-ADVANCE_FEE::: References the the fee that iZettle charges when giving a cash advance.
-ADVANCE_DOWNPAYMENT::: A downpayment on a previously paid out cash advance
+A cash advance is a type of financing that is offered to merchant's based on their sales history. The advance is paid back with monthly down payments.
+ADVANCE_FEE::: References the fee that iZettle charges when giving a cash advance.
+ADVANCE_DOWNPAYMENT::: A down payment on a previously paid out cash advance.
 ADVANCE_FEE_DOWNPAYMENT::: References the netting of a cash advance fee.
 SUBSCRIPTION_CHARGE::: References a subscription charge (e.g. for the Kassaregister service).
 
-start:: a start point in time, limiting the result set (inclusive).
-end:: an end point in time, limiting the result set (exclusive).
+start:: A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string.
+end:: An end point in time, limiting the result set (exclusive). Formatted as an ISO 8601 string.
 limit (optional):: Limit the result set to X number of results.
 offset (optional):: Offset the result set by X number of results.
         
@@ -74,7 +74,7 @@ offset (optional):: Offset the result set by X number of results.
 `READ:FINANCE`
 
 #### Example Response
-`GET organizations/us/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
+`GET /organizations/us/accounts/LIQUID/transactions?start=2015-11-16&end=2015-11-17`
 
 ```json
 {
@@ -118,15 +118,15 @@ Finance transactions of types `CARD_PAYMENT`, `CARD_PAYMENT_FEE`, `CARD_REFUND` 
 In the case of other transaction types, the value of the `originatingTransactionUuid` is not linkable to a specific card purchase and is not useful for external integrators.
 
 ### Payouts
-`GET organizations/us/payout-info`
+`GET /organizations/us/payout-info`
 
-at (optional):: Use to get payouts until a specific historic DateTime.
+at (optional):: Use to get payouts until a specific historic date. Formatted as an ISO 8601 string.
 
-#### Permissions required
+#### Permissions Required
 `READ:FINANCE`
 
-#### Example response
-`GET organizations/us/payout-info`
+#### Example Response
+`GET /organizations/us/payout-info`
 ```json
 {
     "data": {

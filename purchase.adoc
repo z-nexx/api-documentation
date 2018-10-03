@@ -1,7 +1,7 @@
 ## Purchase API V1
 
 ### Service Description
-The purchase API provides information about a purchases made through the iZettle point-of-sale.
+The purchase API provides information about purchases made through the iZettle point-of-sale.
 
 ### URL
 https://purchase.izettle.com
@@ -21,11 +21,11 @@ ____
 === Get purchase history
 Will include cash register information if possible.
 
-`GET purchases`
+`GET /purchases`
 
 lastPurchaseHash (optional):: A value from "lastPurchaseHash" from the result of a previous history query, to continue listing purchases from the next record after the previous query.
-startDate (optional):: Start date for purchases to be retrieved from, and including, this day until today or endDate. Can only be combined with endDate or limit.
-endDate (optional):: Last date, exclusive, for purchases to be retrieved until. Can only be combined with startDate.
+startDate (optional):: The start date (inclusive) for purchases to be retrieved from until today or endDate. Can only be combined with endDate or limit.
+endDate (optional):: The last date (exclusive) for purchases to be retrieved until. Can only be combined with startDate.
 limit (optional):: The maximum number of records to return.
 descending (optional):: When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
 
@@ -38,7 +38,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
 `READ:PURCHASE`
 
 #### Example response 1
-`GET purchases?limit=10`
+`GET /purchases?limit=10`
 ```json
 {
   "purchases": [
@@ -365,7 +365,7 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
 
 ### Get purchase details
 
-`GET purchase/{purchaseUUID}`
+`GET /purchase/{purchaseUUID}`
 
 #### Permissions required
 `READ:PURCHASE`
@@ -376,7 +376,7 @@ purchaseUUID:: The UUID of the purchase
 404:: Purchase not found
 
 #### Example response
-`GET purchase/6HbDrnUNRji5iniGikNLiQ`
+`GET /purchase/6HbDrnUNRji5iniGikNLiQ`
 ```json
 {
     "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
