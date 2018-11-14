@@ -53,12 +53,14 @@ in the form: `"eventNames" : ["PurchaseCreated","ProductCreated"] ` etc.
 When you create a webhook a `TestMessage` will be sent with the following format:
 ```json
 {
-  "eventName" : "TestMessage",
+  "eventName" : "<one of the eventnames in the subscription>",
   "organizationUuid" : "<organization uuid>",
   "messageId" : "<unique id of the message>",
-  "payload" : { "data" : "payload" }
+  "payload" : { "message" : "test" }
 }
 ```
+The eventName that will be returned in the message is the first one that the subscription has added in the eventNames list.
+If no eventNames have been added and list is empty then a fixed value: PurchaseCreated will be added.
 We expect that this will return a 200 OK to continue with the setup.
 
 
