@@ -62,14 +62,28 @@ When you create a webhook a `TestMessage` will be sent with the following format
 We expect that this will return a 200 OK to continue with the setup.
 
 
-### Managing Webhooks
+### Managing Webhook Subscriptions
 
-To edit your webhooks you need to delete and recreate them, use these endpoints to do that.
+To get all webhook subscriptions:
+`GET  /organizations/{organizationUuid}/subscriptions`
 
-`GET /organizations/{organizationUuid}/subscriptions`
 
-`DELETE /organizations/{organizationUuid}/subscriptions/uuid/{uuid}`
+To update a webhook subscription:
+`PUT  /organizations/{organizationUuid}/subscriptions/{subscriptionUuid}`
 
+```json
+{
+  "eventNames": [],
+  "destination": "https://yoururl.domain",
+  "contactEmail": "email_if_it_breaks@domain.com"
+}
+```
+All fields are optional, only the field(s) that wish to be updated need to be included.
+A PUT-request will reactivate the subscription if it has failed.
+
+
+To delete a webhook subscription:
+`DELETE  /organizations/{organizationUuid}/subscriptions/uuid/{uuid}`
 
 
 ### Payload
