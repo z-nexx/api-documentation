@@ -12,7 +12,7 @@ within the iZettle apps or via the `imageUrls` returned by the service (See Swag
 https://image.izettle.com/v2/images
 
 ### API Documentation
-https://image.izettle.com/v2/images/swagger
+https://image.izettle.com/swagger
 
 ---
 
