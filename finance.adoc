@@ -9,6 +9,12 @@ https://finance.izettle.com
 ### API Documentation
 https://finance.izettle.com/swagger
 
+### Scopes
+The Finance API implements the following scopes:
+
+- `READ:FINANCE`
+- `WRITE:FINANCE`
+
 ---
 
 ### Account Type Group

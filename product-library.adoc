@@ -9,6 +9,12 @@ https://products.izettle.com
 ### API Documentation
 https://products.izettle.com/swagger
 
+### Scopes
+The Product Library API implements the following scopes:
+
+- `READ:PRODUCT`
+- `WRITE:PRODUCT`
+
 ---
 ### Example Requests
 #### Create product
