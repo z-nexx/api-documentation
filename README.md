@@ -14,5 +14,3 @@
 ## Credentials
 Apply for API credentials here: https://www.izettle.com/api-access/
 
-## Implementations
-[PHP 7.1](https://github.com/LauLamanApps/iZettleApi/) (unofficial)
