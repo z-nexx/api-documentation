@@ -70,6 +70,9 @@ ADVANCE_FEE::: References the fee that iZettle charges when giving a cash advanc
 ADVANCE_DOWNPAYMENT::: A down payment on a previously paid out cash advance.
 ADVANCE_FEE_DOWNPAYMENT::: References the netting of a cash advance fee.
 SUBSCRIPTION_CHARGE::: References a subscription charge (e.g. for the Kassaregister service).
+INVOICE_PAYMENT::: References an invoice payment.
+INVOICE_PAYMENT_FEE::: References an invoice payment fee.
+ADJUSTMENT::: References a bookkeeping adjustment.
 
 start:: A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string.
 end:: An end point in time, limiting the result set (exclusive). Formatted as an ISO 8601 string.
