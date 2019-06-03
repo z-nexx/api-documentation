@@ -4,7 +4,7 @@
 The Authorization service implements the OAuth 2.0 protocol. It handles merchant authorization of external integrators and issues access tokens used by authorized clients to call the other parts of the iZettle API.
 
 ### URL
-https://oauth.izettle.net
+https://oauth.izettle.com
 
 ---
 
@@ -88,7 +88,7 @@ To obtain an access token that can be used to call our APIs, you will have to se
 curl -s -d \
 'grant_type=password&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&client_secret=IZSEC7356b8a1-75ac-4336-970b-bef63cd219c1&username=user@email.com&password=mypassword' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
-'https://oauth.izettle.net/token'
+'https://oauth.izettle.com/token'
 ```
 
 You will get a normal access and refresh token back, which you can then start using. 
