@@ -12,5 +12,5 @@
  - [Pusher (Webhooks)](pusher.adoc)
 
 ## Credentials
-Apply for API credentials here: https://www.izettle.com/api-access/
+Apply for API credentials here: https://developer.izettle.com/register
 

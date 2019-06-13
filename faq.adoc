@@ -6,8 +6,7 @@ image::https://d15n4q3o4x3svq.cloudfront.net/assets/tutorials/curl/api-a397cc184
 ****
 This document contains answers to the most asked questions, if you have questions that are not answered
 in this document please refer to using our api-team email address: api@izettle.com .
-If you want to apply to receive access to our APIs, please fill in the form https://www.izettle.com/api-access/[Here]
-and we will come back to you with your credentials.
+If you want to apply to receive access to our APIs, please visit the https://developer.izettle.com/register[iZettle Developer Portal].
 ****
 '''
 
