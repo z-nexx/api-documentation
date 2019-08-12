@@ -10,8 +10,6 @@ https://purchase.izettle.com
 The Purchase API implements the following scopes:
 
 - `READ:PURCHASE`
-- `WRITE:PURCHASE`
-
 
 === Get purchase history
 Will include cash register information if possible.
