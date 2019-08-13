@@ -31,7 +31,6 @@ Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation o
 #### Permissions required
 `READ:PURCHASE`
 
-TODO: Update payment representation of listed examples
 #### Example response 1
 `GET /purchases/v2?limit=10`
 ```json
@@ -39,7 +38,7 @@ TODO: Update payment representation of listed examples
   "purchases": [
     {
       "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
-      "purchaseUUID1" : "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
+      "purchaseUUID1": "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
       "amount": 1500,
       "vatAmount": 161,
       "country": "SE",
@@ -68,19 +67,24 @@ TODO: Update payment representation of listed examples
           "libraryProduct": true
         }
       ],
-      "cardPayments": [
+      "payments": [
         {
-          "cardPaymentUUID": "aDvfSXWDRb-NmbbwMegqdA",
-          "cardPaymentUUID1": "683bdf49-7583-45bf-8d99-b6f031e82a74",
+          "uuid": "683bdf49-7583-45bf-8d99-b6f031e82a74",
           "amount": 1500,
-          "cardType": "MASTERCARD",
-          "maskedPan": "518779******5289",
-          "cardPaymentEntryMode": "EMV",
-          "applicationIdentifier": "A0000000041010",
-          "terminalVerificationResults": "0000008000",
-          "transactionStatusInformation": "E800",
-          "referenceNumber": "N4GVFINIER",
-          "nrOfInstallments": 0
+          "gratuityAmount": 0,
+          "type": "IZETTLE_CARD",
+          "attributes": {
+            "transactionStatusInformation": "EC00",
+            "cardPaymentEntryMode": "EMV",
+            "maskedPan": "476173******0119",
+            "installmentAmount": null,
+            "referenceNumber": "AU54FYHW7X",
+            "nrOfInstallments": 0,
+            "cardType": "VISA",
+            "terminalVerificationResults": "0080088000",
+            "applicationIdentifier": "A0000000031010",
+            "applicationName": "Visa Credit"
+          }
         }
       ],
       "cashRegister": {
@@ -96,7 +100,7 @@ TODO: Update payment representation of listed examples
     },
     {
       "purchaseUUID": "zj9yI1wyTvqP46AG8NEaYg",
-      "purchaseUUID1" : "ce3f7223-5c32-4efa-8fe3-a006f0d11a62",
+      "purchaseUUID1": "ce3f7223-5c32-4efa-8fe3-a006f0d11a62",
       "amount": 1500,
       "vatAmount": 161,
       "country": "SE",
@@ -124,11 +128,14 @@ TODO: Update payment representation of listed examples
           "libraryProduct": true
         }
       ],
-      "cashPayments": [
+      "payments": [
         {
-          "cashPaymentUUID": "54f3gL8aToKG10bXOfj-IQ",
+          "uuid": "f091c978-bdb0-11e9-9cb5-2a2ae2dbcce4",
           "amount": 1500,
-          "handedAmount": 10000
+          "type": "IZETTLE_CASH",
+          "attributes": {
+            "handedAmount": 10000
+          }
         }
       ],
       "cashRegister": {
@@ -205,13 +212,15 @@ TODO: Update payment representation of listed examples
           "libraryProduct": true
         }
       ],
-      "cashPayments": [
-        {
-          "cashPaymentUUID": "1137e9b0-8ec4-11e6-9f8b-eb0ea36a94e2",
-          "amount": 17000,
-          "handedAmount": 17000,
-          "cashPaymentUUID1": "1137e9b0-8ec4-11e6-9f8b-eb0ea36a94e2"
-        }
+      "payments": [
+       {
+         "uuid": "ce90dc90-dcaa-11e6-87a4-0cd119752226",
+         "amount": 17000,
+         "type": "IZETTLE_CASH",
+         "attributes": {
+           "handedAmount": 17000
+         }
+       }
       ],
       "refundedByPurchaseUUIDs": [
         "HKXEKo7EEeaq_0GG8pcFtg"
@@ -253,12 +262,14 @@ TODO: Update payment representation of listed examples
           "libraryProduct": true
         }
       ],
-      "cashPayments": [
+      "payments": [
         {
-          "cashPaymentUUID": "1ca7c4f0-8ec4-11e6-93fb-440a20c6bcbf",
-          "amount": -3500,
-          "handedAmount": -3500,
-          "cashPaymentUUID1": "1ca7c4f0-8ec4-11e6-93fb-440a20c6bcbf"
+           "uuid": "1ca7c4f0-8ec4-11e6-93fb-440a20c6bcbf",
+           "amount": -3500,
+           "type": "IZETTLE_CASH",
+           "attributes": {
+             "handedAmount": -3500
+           }
         }
       ],
       "refundsPurchaseUUID": "DpNWkI7EEeaR8yfR3nmUIA",
@@ -334,24 +345,26 @@ TODO: Update payment representation of listed examples
           "quantity": 1
         }
       ],
-      "cashPayments": [
-    {
-      "cashPaymentUUID": "6f4e2e50-e893-11e6-a784-a603fda22c92",
-      "amount": 10000,
-      "handedAmount": 10000,
-      "cashPaymentUUID1": "6f4e2e50-e893-11e6-a784-a603fda22c92"
+      "payments": [
+        {
+          "uuid": "6f4e2e50-e893-11e6-a784-a603fda22c92",
+          "amount": 10000
+          "type": "IZETTLE_CASH",
+          "attributes": {
+            "handedAmount": 10000
+          }
+        }
+      ],
+      "receiptCopyAllowed": true,
+      "published": true,
+      "purchaseUUID1": "6e2a95e0-e893-11e6-bafa-56ab480140ef",
+      "groupedVatAmounts": {
+        "12.0": 7200,
+        "25.0": 2800
+      },
+      "refund": false,
+      "refunded": false
     }
-  ],
-  "receiptCopyAllowed": true,
-  "published": true,
-  "purchaseUUID1": "6e2a95e0-e893-11e6-bafa-56ab480140ef",
-  "groupedVatAmounts": {
-    "12.0": 7200,
-    "25.0": 2800
-  },
-  "refund": false,
-  "refunded": false
-}
   ],
   "firstPurchaseHash": "1485857753809PaSsMOeeEeawkeLVV_68nw",
   "lastPurchaseHash": "1485858080407AOjsYOefEeax5pDdmnaGXw"
@@ -371,61 +384,66 @@ purchaseUUID:: The UUID of the purchase
 404:: Purchase not found
 
 #### Example response
-`GET /purchase/v2/6HbDrnUNRji5iniGikNLiQ`
+`GET /purchase/v2/e876c3ae-750d-4638-b98a-78868a434b89`
 ```json
 {
-    "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
-    "purchaseUUID1" : "e876c3ae-750d-4638-b98a-78868a434b89",
-    "amount": 1500,
-    "vatAmount": 161,
-    "country": "SE",
-    "currency": "SEK",
-    "timestamp": "2015-02-08T10:21:21.469+0000",
-    "gpsCoordinates": {
-        "longitude": -73.99845698202617,
-        "latitude": 40.734215418008596,
-        "accuracyMeters": 65
-    },
-    "purchaseNumber": 1,
-    "userDisplayName": "Stig Haraldsson",
-    "products": [
-        {
-            "quantity": "1",
-            "revisionId": 86695765,
-            "vatPercentage": 12,
-            "unitPrice": 1500,
-            "rowTaxableAmount": 1339,
-            "name": "Enkel espresso",
-            "productId": 32704190,
-            "autoGenerated": false,
-            "libraryProduct": true
-        }
-    ],
-    "cardPayments": [
-        {
-            "cardPaymentUUID": "aDvfSXWDRb-NmbbwMegqdA",
-            "cardPaymentUUID1": "683bdf49-7583-45bf-8d99-b6f031e82a74",
-            "amount": 1500,
-            "cardType": "MASTERCARD",
-            "maskedPan": "540200******7008",
-            "cardPaymentEntryMode": "EMV",
-            "applicationIdentifier": "A0000000041010",
-            "terminalVerificationResults": "0000008000",
-            "transactionStatusInformation": "E800",
-            "referenceNumber": "N4GVFINIER",
-            "nrOfInstallments": 0
-        }
-    ],
-    "cashRegister": {
-        "uuid": "r_dBcr6tT2ypC1jlMuUUzg",
-        "displayName": "Kassa 1"
-    },
-    "receiptCopyAllowed": true,
-    "refund": false,
-    "groupedVatAmounts": {
-        "12.0": 1500
-    },
-    "refunded": false
+  "purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
+  "purchaseUUID1": "e876c3ae-750d-4638-b98a-78868a434b89",
+  "amount": 1500,
+  "vatAmount": 161,
+  "country": "SE",
+  "currency": "SEK",
+  "timestamp": "2015-02-08T10:21:21.469+0000",
+  "gpsCoordinates": {
+    "longitude": -73.99845698202617,
+    "latitude": 40.734215418008596,
+    "accuracyMeters": 65
+  },
+  "purchaseNumber": 1,
+  "userDisplayName": "Stig Haraldsson",
+  "products": [
+    {
+      "quantity": "1",
+      "revisionId": 86695765,
+      "vatPercentage": 12,
+      "unitPrice": 1500,
+      "rowTaxableAmount": 1339,
+      "name": "Enkel espresso",
+      "productId": 32704190,
+      "autoGenerated": false,
+      "libraryProduct": true
+    }
+  ],
+  "payments": [
+    {
+      "uuid": "165b88a0-07a3-11e6-9dae-43c30f1bff5b",
+      "amount": 1500,
+      "gratuityAmount": 0,
+      "type": "IZETTLE_CARD",
+      "attributes": {
+        "transactionStatusInformation": "EC00",
+        "cardPaymentEntryMode": "EMV",
+        "maskedPan": "476173******0119",
+        "installmentAmount": null,
+        "referenceNumber": "AU54FYHW7X",
+        "nrOfInstallments": 0,
+        "cardType": "VISA",
+        "terminalVerificationResults": "0080088000",
+        "applicationIdentifier": "A0000000031010",
+        "applicationName": "Visa Credit"
+      }
+    }
+  ],
+  "cashRegister": {
+    "uuid": "r_dBcr6tT2ypC1jlMuUUzg",
+    "displayName": "Kassa 1"
+  },
+  "receiptCopyAllowed": true,
+  "refund": false,
+  "groupedVatAmounts": {
+    "12.0": 1500
+  },
+  "refunded": false
 }
 ```
 
@@ -455,7 +473,8 @@ TODO: Add some more overview info
 }
 ----
 
-In addition to `IZETTLE_CARD`, `IZETTLE_CARD_ONLINE`, `IZETTLE_CASH` and `IZETTLE_INVOICE`, there is also payment types of `SWISH`, `VIPPS`, `MOBILE_PAY`, `PAYPAL`, `STORE_CREDIT` and `CUSTOM`.
+In addition to `IZETTLE_CARD`, `IZETTLE_CARD_ONLINE`, `IZETTLE_CASH` and `IZETTLE_INVOICE`, there is currently also payment types of `SWISH`, `VIPPS`, `MOBILE_PAY`, `PAYPAL`, `STORE_CREDIT` and `CUSTOM`.
+Payment types are added when product offering of iZettle changes, so for forwards-compatibility it is important that clients are tolerant of receiving payments of types that are not defined upfront.
 
 === Payment attributes
 The `payment` data type only contain a few generic parameters such as `uuid`, `amount` and `type`. To be able to represent all types of payments it has an `attributes` map that contain all payment type specific data such as `maskedPan` or `cardType` for card payments or `handedAmount` for cash payments.
@@ -476,7 +495,7 @@ Other payments such as Swish, Vipps and MobilePay don't have attributes. They wi
 
 ._example of card payment_
 ----
-"purchaseUUID": "6HbDrnUNRji5iniGikNLiQ",
+"purchaseUUID1": "fe8d0460-21c4-11e6-8ca8-3a4023ced819",
 "amount": 2000,
 "gratuityAmount": 0,
 ...
@@ -585,17 +604,16 @@ A discount can never be greater than the actual amount of the row or cart price.
 
 ### How to load all purchases for a user
 
-TODO: add info on max-limit
 You should never retrieve all the purchases in one request, since that can potentially put too much load on the server causing the request to be rejected or time out.
 
-Instead, you should request the purchases splitted up into "pages", using the `limit` and `lastPurchaseHash` parameters.
+Instead, you should request the purchases splitted up into "pages", using the `limit` and `lastPurchaseHash` parameters, with `limit` set to maximum 100.
 
 The `limit` parameter will set the page size, and the `lastPurchaseHash` parameter sets the starting point from where to retrieve purchases. Every response from the purchase service will contain a `lastPurchaseHash` field, which can be added to the new request to retrieve the next "page".
 
 In order to load all purchases, begin with an initial request without the `lastPurchaseHash` parameter being set, this will retrieve the first _n_ purchases (where _n_ is the page size defined by the `limit` parameter):
 
 ```
-GET /purchases/v2?limit=100
+GET /purchases/v2?limit=50
 ```
 
 The result will contain the first _n_ number of purchases.
