@@ -1,4 +1,4 @@
-## Purchase API V1
+## Purchase API
 
 ### Service Description
 The purchase API provides information about purchases made through the iZettle point-of-sale.
