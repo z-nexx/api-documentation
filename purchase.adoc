@@ -22,7 +22,8 @@ endDate (optional):: The last date (exclusive) for purchases to be retrieved unt
 limit (optional):: The maximum number of records to return.
 descending (optional):: When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
 
-TODO: Add 3-year age limit of purchases returned, and remove info on legacy uuid format
+TODO: Add 3-year age limit of purchases returned, and remove info on legacy uuid format. For implementation, build upon https://izettle.atlassian.net/browse/CH-1278 (Date range and lastPurchaseHash for GET purchases) by defaulting fromDate to 3 years back
+
 Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation of the UUID fields.  The UUID fields can be either of:
 
 1. Base64 encoded UUID.
