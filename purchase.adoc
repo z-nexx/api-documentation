@@ -629,7 +629,7 @@ The result will contain the first _n_ number of purchases.
 
 To retrieve the following pages, use the `lastPurchaseHash` field in the previous response to load the next page:
 ```
-GET /purchases/v2?limit=100&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg
+GET /purchases/v2?limit=50&lastPurchaseHash=1423390928355zj9yI1wyTvqP46AG8NEaYg
 ```
 
 The result will contain the next _n_ number of purchases:
