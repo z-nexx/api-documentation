@@ -22,7 +22,7 @@ endDate (optional):: The last date (exclusive) for purchases to be retrieved unt
 limit (optional):: The maximum number of records to return.
 descending (optional):: When true, returns purchases with the highest timestamp first.  When false, returns purchases with the lowest timestamp first. Defaults to false if not specified.
 
-TODO: Add 3-year age limit of purchases returned, and remove info on legacy uuid format. For implementation, build upon https://izettle.atlassian.net/browse/CH-1278 (Date range and lastPurchaseHash for GET purchases) by defaulting fromDate to 3 years back
+TODO: Add 3-year age limit of purchases returned, and remove info on legacy uuid format. For implementation see CH-1315
 
 Fields named "*UUID1" are the standard UUID Type 1 (8-4-4-4-12) representation of the UUID fields.  The UUID fields can be either of:
 
@@ -449,36 +449,15 @@ purchaseUUID:: The UUID of the purchase
 
 ### Payments
 
-TODO: Add some more overview info
-
-._example: Version 2 purchase with one card, one cash and one invoice payment_
-----
-{
-  ...
-  "payments": [
-    {
-      "type": "IZETTLE_CARD",
-      ...
-    },
-    {
-      "type": "IZETTLE_CASH",
-      ...
-    },
-    {
-      "type": "IZETTLE_INVOICE",
-      ...
-    },
-  ],
-  ...
-}
-----
-
-In addition to `IZETTLE_CARD`, `IZETTLE_CARD_ONLINE`, `IZETTLE_CASH` and `IZETTLE_INVOICE`, there is currently also payment types of `SWISH`, `VIPPS`, `MOBILE_PAY`, `PAYPAL`, `STORE_CREDIT` and `CUSTOM`.
-Payment types are added when product offering of iZettle changes, so for forwards-compatibility it is important that clients are tolerant of receiving payments of types that are not defined upfront.
+A purchase has one or more payments represented in the `payments` list attribute.
 
 === Payment attributes
-The `payment` data type only contain a few generic parameters such as `uuid`, `amount` and `type`. To be able to represent all types of payments it has an `attributes` map that contain all payment type specific data such as `maskedPan` or `cardType` for card payments or `handedAmount` for cash payments.
+The `payment` data type only contain a few generic parameters such as `uuid`, `amount` and `type`.
 
+The currently available payment types are `IZETTLE_CARD`, `IZETTLE_CARD_ONLINE`, `IZETTLE_CASH`, `IZETTLE_INVOICE`, `SWISH`, `VIPPS`, `MOBILE_PAY`, `PAYPAL`, `STORE_CREDIT` and `CUSTOM`.
+Payment types are added when product offerings at iZettle changes, so for forwards-compatibility it is important that clients are tolerant of receiving payments of types that are not defined upfront.
+
+To be able to represent all types of payments it has an `attributes` map that contain all payment type specific data such as `maskedPan` or `cardType` for card payments or `handedAmount` for cash payments.
 Other payments such as Swish, Vipps and MobilePay don't have attributes. They will only be represented by a `uuid`, an `amount` and a `type`.
 
 ._example of cash payment_
@@ -603,6 +582,8 @@ So the total discount on this purchase is: 15 + 25 = 40. And the total sum to pa
 A discount can never be greater than the actual amount of the row or cart price.
 
 ### How to load all purchases for a user
+
+TODO: Add info on the more paging alternatives available when CH-1278 implemented (Date range and lastPurchaseHash for GET purchases).
 
 You should never retrieve all the purchases in one request, since that can potentially put too much load on the server causing the request to be rejected or time out.
 
