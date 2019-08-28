@@ -156,3 +156,62 @@ Other payments such as Swish, Vipps and MobilePay don't have attributes. They wi
 _Note_: `gratuityAmount` corresponds to the tipping amount in the purchase. This
 feature is not available in all countries. When the `gratuityAmount` is set, the
 card payment amount will include the gratuity amount.
+
+
+._example of giftcard purchase_
+----
+{
+	"purchases": [{
+		"purchaseUUID": "zj9yI1wyTvqP46AG8NEaYg",
+		"purchaseUUID1": "ce3f7223-5c32-4efa-8fe3-a006f0d11a62",
+		"amount": 1500,
+		"vatAmount": 161,
+		"country": "SE",
+		"currency": "SEK",
+		"timestamp": "2015-02-08T10:22:08.355+0000",
+		"gpsCoordinates": {
+			"longitude": 17.53335989364865,
+			"latitude": 58.772674182845805,
+			"accuracyMeters": 65
+		},
+		"purchaseNumber": 2,
+		"userDisplayName": "Ford Prefect",
+		"userId": 1713921,
+		"organizationId": 14184411,
+		"products": [{
+				"unitPrice": 1500,
+				"productUuid": "32986b58-0753-11e8-bd3c-f5639f19b562"
+			},
+			{
+				"unitPrice": 2000,
+				"productUuid": "864a63a6-a170-11e9-a2a3-2a2ae2dbcce4"
+			}
+		],
+		"payments": [{
+			"uuid": "f091c978-bdb0-11e9-9cb5-2a2ae2dbcce4",
+			"amount": 3500,
+			"type": "IZETTLE_CASH",
+			"attributes": {
+				"handedAmount": 10000
+			}
+		}],
+		"references": {
+			"giftcards": ["32986b58-0753-11e8-bd3c-f5639f19b562", "864a63a6-a170-11e9-a2a3-2a2ae2dbcce4"]
+		},
+		"cashRegister": {
+			"uuid": "r_dBcr6tT2ypC1jlMuUUzg",
+			"displayName": "Kassa 1"
+		},
+		"receiptCopyAllowed": true,
+		"groupedVatAmounts": {
+			"12.0": 1500
+		},
+		"refund": false,
+		"refunded": false
+	}],
+	"firstPurchaseHash": "14233908814696HbDrnUNRji5iniGikNLiQ",
+	"lastPurchaseHash": "1423390928355zj9yI1wyTvqP46AG8NEaYg"
+}
+----
+
+_Note_: All the `productUuid` of giftcards purchased will be sent in the `references` attribute with `giftcards` as key.
