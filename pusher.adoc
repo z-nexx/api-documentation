@@ -4,8 +4,6 @@
 Pusher is a service that pushes information to other services, currently only supporting _Webhooks_.
 Webhooks allows you to build or set up integrations which subscribe to certain events.
 
-
-
 ### URL
 https://pusher.izettle.com
 
@@ -22,12 +20,13 @@ https://pusher.izettle.com/swagger
 {
   "uuid": "<UUID1>",
   "transportName": "WEBHOOK",
-  "eventNames": [],
+  "eventNames": ["<event names>"],
   "destination": "https://yoururl.domain",
   "contactEmail": "email_if_it_breaks@domain.com"
 }
 ```
-#### Clarification
+
+#### Request Fields
 `uuid`: A uuid has to be created by the called and must be UUID version 1.
 
 `transportName`: only `WEBHOOK` is available at the moment.
@@ -43,12 +42,11 @@ https://pusher.izettle.com/swagger
     InventoryTrackingStopped
     OrganizationUpdated
 ```
-in the form: `"eventNames" : ["PurchaseCreated","ProductCreated"] ` etc.
+in the form: `"eventNames" : ["PurchaseCreated","ProductCreated"]` etc.
 
-`destination` : The destination of the messages.
+`destination` : The destination of the messages. Must be HTTPS.
 
 `contactEmail`: If the webhook fails we will automatically send an email to this address, so make sure it goes to the correct person.
-
 
 When you create a webhook a `TestMessage` will be sent with the following format:
 ```json
@@ -60,6 +58,27 @@ When you create a webhook a `TestMessage` will be sent with the following format
 }
 ```
 We expect that this will return a 200 OK to continue with the setup.
+
+#### Response
+The created subscription will be returned in the response:
+```json
+{
+    "uuid": "ef64c5e2-4e16-11e8-9c2d-fa7ae01bbebc",
+    "transportName": "WEBHOOK",
+    "eventNames": [
+      "ProductCreated",
+      "PurchaseCreated"
+    ],
+    "updated": "2019-09-05T19:40:24.285Z",
+    "destination": "https://yoururl.domain",
+    "contactEmail": "email_if_it_breaks@domain.com",
+    "status": "ACTIVE",
+    "signingKey": "G6MWAEw1Fc6FWPkfiJiZ3j8Ya76I5ZbEDVPtzcPl6L6scsylmK5AEDyNyMe8N5cy"
+  }
+```
+Please note the `signingKey` in the response. This is the key used to sign all webhook
+requests and should be stored so that you can verify the validity of the webhook request.
+See <<Webhook Verification>> for more info.
 
 
 ### Managing Webhook Subscriptions
@@ -81,9 +100,54 @@ To update a webhook subscription:
 All fields are optional, only the field(s) that wish to be updated need to be included.
 A PUT-request will reactivate the subscription if it has failed.
 
-
 To delete a webhook subscription:
 `DELETE  /organizations/{organizationUuid}/subscriptions/uuid/{uuid}`
+
+### Webhook Verification
+To be able to verify that the webhook POST event originates from iZettle, every event is signed
+using a unique signing key (64 bytes long) that is generated per subscription.
+
+#### Signing Key
+The signing key (`signingKey`) is returned in the subscription response when creating or retrieving subscriptions
+and should be saved to be used for later verifications.
+
+#### Signature
+The signature is added in each webhook request as a HTTP header named `X-Izettle-Signature` and is generated using
+HMAC-SHA256.
+
+#### Verifying the signature
+The signature hash is generated as hexdigest using HMAC with SHA-256 as the cryptographic hash function.
+The signature is calculated on the event's `timestamp` and `payload` fields, concatenated together using
+a dot character `.`: `<timestamp>.<payload>`. To verify the signature of the incoming event, calculate a new signature
+using the previously stored signing key and the incoming timestamp and payload and then compare the two signatures.
+
+##### Replay Attacks
+The `timestamp` field is included when calculating the signature to help preventing replay attacks by ensuring
+that the timestamp given in the request is actually the timestamp used when calculating the signature.
+
+##### Code Examples
+
+###### Python
+```python
+import hmac
+import hashlib
+...
+payload_to_sign = '{}.{}'.format(timestamp, payload)
+signature = hmac.new(bytes(signing_key, 'UTF-8'), msg = bytes(payload_to_sign), 'UTF-8'), digestmod = hashlib.sha256).hexdigest()
+```
+
+###### Java
+```java
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import org.apache.commons.codec.Charsets;
+import org.apache.commons.codec.binary.Hex;
+...
+String payloadToSign = String.format("%s.%s", timestamp, payload);
+Mac hmacSHA256 = Mac.getInstance("HmacSHA256");
+hmacSHA256.init(new SecretKeySpec(signingKey.getBytes(Charsets.UTF_8), "HmacSHA256"));
+String signature = Hex.encodeHexString(hmacSHA256.doFinal(payloadToSign.getBytes(Charsets.UTF_8)));
+```
 
 
 ### Payload
@@ -93,11 +157,13 @@ The payload is wrapped in the following json format:
 ```json
   {
     "organizationUuid" : "<organization uuid>",
+    "messageUuid" : "<UUID v1 based on timestamp and messageId>",
     "eventName" : "<one of the eventnames>",
-    "messageId" : "<unique id of the message>",
+    "messageId" : "<unique UUID of the message>",
     "payload": {
       "specific payload of the event"
-    }
+    },
+    "timestamp": "<event timestamp in ISO-8601 format>"
   }
 ```
 
