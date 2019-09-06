@@ -1,4 +1,7 @@
-# iZettle HTTP API
+# iZettle Go HTTP API
+
+These are the documentation pages for the iZettle Go APIs.
+
  [Frequently Asked Questions](faq.adoc)
 
 ## APIs
@@ -12,4 +15,3 @@
 
 ## Credentials
 Apply for API credentials here: https://developer.izettle.com/register
-
