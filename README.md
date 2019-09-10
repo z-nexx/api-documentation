@@ -7,8 +7,7 @@ These are the documentation pages for the iZettle Go APIs.
 ## APIs
  - [OAuth](authorization.adoc)
  - [Finance](finance.adoc)
- - [Purchase V1](purchase.adoc)
- - [Purchase V2](purchase_v2.adoc)
+ - [Purchase](purchase.adoc)
  - [Product Library](product-library.adoc)
  - [Inventory](inventory.adoc)
  - [Image](image.adoc)
