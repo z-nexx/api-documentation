@@ -1,7 +1,7 @@
 ## Purchase API
 
 ### Service Description
-The purchase API provides information about purchases made through the iZettle point-of-sale.
+The purchase API provides information about purchases made through iZettle.
 
 ### URL
 https://purchase.izettle.com
@@ -12,7 +12,7 @@ The Purchase API implements the following scopes:
 - `READ:PURCHASE`
 
 === Get purchase history
-Will include cash register information if possible. Purchases up to three years old are available to fetch.
+Will include cash register information if applicable. Purchases up to three years old are available to fetch.
 
 `GET /purchases/v2`
 
