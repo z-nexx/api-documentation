@@ -13,7 +13,7 @@ The Giftcard API implements the following scopes:
 
 ### Get Giftcard details
 
-`GET organizations/{organizationUuid}/giftcards/external/{uuid}`
+`GET organizations/self/giftcards/external/{uuid}`
 
 #### Permissions required
 `READ:PURCHASE`
