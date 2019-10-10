@@ -24,7 +24,7 @@ uuid:: The UUID of the giftcard
 404:: Giftcard not found
 
 #### Example response
-`GET /organizations/{organizationUuid}/giftcards/external/e876c3ae-750d-4638-b98a-78868a434b89`
+`GET /organizations/self/giftcards/external/e876c3ae-750d-4638-b98a-78868a434b89`
 ```json
 {
   "uuid": "e876c3ae-750d-4638-b98a-78868a434b89",
