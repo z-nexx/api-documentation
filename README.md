@@ -12,6 +12,7 @@ These are the documentation pages for the iZettle Go APIs.
  - [Inventory](inventory.adoc)
  - [Image](image.adoc)
  - [Pusher (Webhooks)](pusher.adoc)
+ - [Giftcard](giftcard.adoc)
 
 ## Credentials
 Apply for API credentials here: https://developer.izettle.com/register
