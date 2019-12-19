@@ -12,7 +12,7 @@ https://pusher.izettle.com/swagger
 
 ---
 
-### Create a webhook subscription
+### Create a Webhook Subscription
 
 `POST  /organizations/{organizationUuid}/subscriptions`
 
@@ -80,7 +80,6 @@ Please note the `signingKey` in the response. This is the key used to sign all w
 requests and should be stored so that you can verify the validity of the webhook request.
 See <<Webhook Verification>> for more info.
 
-
 ### Managing Webhook Subscriptions
 
 To get all webhook subscriptions:
@@ -98,10 +97,16 @@ To update a webhook subscription:
 }
 ```
 All fields are optional, only the field(s) that wish to be updated need to be included.
-A PUT-request will reactivate the subscription if it has failed.
 
 To delete a webhook subscription:
 `DELETE  /organizations/{organizationUuid}/subscriptions/uuid/{uuid}`
+
+### Failing Webhooks
+If the webhook destination URL does not reply with a successful HTTP status code (2xx), the webhook subscription will be marked as failing. Pusher will retry posting the event and as soon as the destination URL starts responsing with a successful status code, the subscription will be marked as active again. 
+
+If the destination URL continues to respond with a non-successful response, the subscription will eventually be deleted and will have to be recreated once the destination is fixed. Warning emails will be sent out to the emaik address registered in the subscription, informing the integrator about the failing subscription.
+
+The retries done by Pusher starts with one attempt every 60 second for 10 attempts in total, followed by one attempt every 600 seconds for 9 attempts in total. If the destination still fails by this time, Pusher will continue to retry sending the event, with one attempt every hour until approximately 70 hours have passed. By that time, the subscription will be deleted if it still fails. 
 
 ### Webhook Verification
 To be able to verify that the webhook POST event originates from iZettle, every event is signed
