@@ -64,7 +64,7 @@ https://products.izettle.com/swagger/#!/products/createProduct
 
 https://products.izettle.com/swagger/#!/products/updateFullProduct
 
-Updates a product entity using JSON merge patch (https://tools.ietf.org/html/rfc7386). This means that only included fields will be changed: null values removes the field on the target entity, and other values updates the field.
+Updates a product entity using JSON merge patch (https://tools.ietf.org/html/rfc7396). This means that only included fields will be changed: null values removes the field on the target entity, and other values updates the field.
 Uses same format as Create product
 
 ---
