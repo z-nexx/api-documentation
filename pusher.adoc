@@ -117,7 +117,7 @@ The signing key (`signingKey`) is returned in the subscription response when cre
 and should be saved to be used for later verifications.
 
 #### Signature
-The signature is added in each webhook request as a HTTP header named `X-Izettle-Signature` and is generated using
+The signature is added in each webhook request as a HTTP header named `X-iZettle-Signature` and is generated using
 HMAC-SHA256.
 
 #### Verifying the signature
