@@ -79,7 +79,7 @@ The response will contain both the access and refresh tokens:
 For private integrations, you should implement the assertion grant as described below. This will allow you to retrieve an access token using an API key provided to you by the iZettle account owner.
 
 #### Create API key
-The iZettle account owner can create an API key from within the iZettle backoffice. This functionality might not yet be available to all users but is being rolled out in the near future. The API key is provided in the form of a JWT string and serves as the assertion that the integrator will use when calling the assertion grant. It is of highest importance that this key is being kept secure!
+The iZettle account owner can create an API key from within the [iZettle Backoffice](https://my.izettle.com/apps/api-keys). The API key is provided in the form of a JWT string and serves as the assertion that the integrator will use when calling the assertion grant. *It is of highest importance that this key is being kept secure!*
 
 In order to make it as easy as possible for the account owner to create the API key, the integrator can provide a deep link to the API key creation page, with prepopulated fields:
 
