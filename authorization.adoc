@@ -106,6 +106,16 @@ curl -s -d \
 
 You will get a normal access token back, which you can then start using. There is no refresh token provided in the response for this grant. To get a new access token once the previous one has expired, you will just call the assertion grant again with the same API key.
 
+#### Optional tracking when using assertions
+Since an assertion is not connected to an OAuth application, the usage cannot be tracked by iZettle in the same way as for normal OAuth based integrations. This can be a problem in cases where the developer of an integration and iZettle has a partnership and where the usage of that integration should be attributed to the developer.
+
+To solve this, we provide two tracking entry points. They both require the developer to register the integration as a normal OAuth application at https://developer.izettle.com.
+
+When requesting an access token using an assertion, a developer that wants to be attributed should use the `client_id` of the created OAuth application instead of the `client_id` of the assertion itself in the `/token` request.
+
+When performing API calls, a custom header `X-iZettle-Application-Id` should be set, with the `client_id` of the application.
+
+These two measures will ensure that the usage of the integration can be attributed to the integrator.
 
 ### Refreshing an access token
 **RFC 6749:** https://tools.ietf.org/html/rfc6749#section-6[6. Refreshing an Access Token]
