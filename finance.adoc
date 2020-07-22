@@ -53,6 +53,7 @@ The transaction happens only when the merchant has nominated and verified a new 
 PAYOUT::: A payout to the merchant's bank account.
 FAILED_PAYOUT::: A previous PAYOUT transaction has failed and is voided by this transaction (money going back to the merchant's liquid account at iZettle).
 CASHBACK::: Money given to a merchant to retroactively adjust the card payment fee rate.
+CASHBACK_PAYOUT::: (deprecated) Direct payout of a cashback, effectively circumventing the normal flow via the liquid account.
 VOUCHER_ACTIVATION::: Used when activating a voucher (money is inserted to the merchant's fee discount account).
 EMONEY_TRANSFER::: An internal transfer between two merchants' iZettle accounts. Only used in Sweden.
 TELL_FRIEND::: Money given to a merchant for recommending iZettle.
