@@ -17,7 +17,7 @@ We are using TLS 1.2 for the moment.
 ====
 **How do I take payments through the iZettle API?**
 ====
-It is not possible to take payments through the API. However we do have an iOS SDK which supports taking payments here: https://github.com/iZettle/sdk-ios There is currently no support for Android.
+It is not possible to take payments through the API. However we do have SDKs for both iOS (https://github.com/iZettle/sdk-ios) and Android (https://github.com/iZettle/sdk-android) which supports taking payments.
 ====
 **Do you provide any test or sandbox environment?**
 ====
