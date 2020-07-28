@@ -117,7 +117,7 @@ The signing key (`signingKey`) is returned in the subscription response when cre
 and should be saved to be used for later verifications.
 
 #### Signature
-The signature is added in each webhook request as a HTTP header named `X-Izettle-Signature` and is generated using
+The signature is added in each webhook request as a HTTP header named `X-iZettle-Signature` and is generated using
 HMAC-SHA256.
 
 #### Verifying the signature
@@ -132,13 +132,28 @@ that the timestamp given in the request is actually the timestamp used when calc
 
 ##### Code Examples
 
-###### Python
+###### Python 2
 ```python
 import hmac
 import hashlib
 ...
 payload_to_sign = '{}.{}'.format(timestamp, payload)
-signature = hmac.new(bytes(signing_key, 'UTF-8'), msg = bytes(payload_to_sign), 'UTF-8'), digestmod = hashlib.sha256).hexdigest()
+signature = hmac.new(bytes(signing_key), msg = bytes(payload_to_sign), digestmod = hashlib.sha256).hexdigest()
+```
+
+###### Python 3
+```python
+import hmac
+import hashlib
+...
+payload_to_sign = '{}.{}'.format(timestamp, payload)
+signature = hmac.new(bytes(signing_key, 'UTF-8'), msg = bytes(payload_to_sign, 'UTF-8'), digestmod = hashlib.sha256).hexdigest()
+```
+
+###### PHP
+```php
+$payloadToSign = stripslashes($timestamp . '.' . $payloadStr);
+$signature = hash_hmac('sha256', $payloadToSign, $signingKey);
 ```
 
 ###### Java
