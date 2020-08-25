@@ -11,7 +11,7 @@ https://oauth.izettle.com
 ### Introduction
 The OAuth API implements the OAuth 2.0 Authorization Framework (https://tools.ietf.org/html/rfc6749[RFC 6749]). For an external integrator, there are two different grant types that are of interest, the authorization code grant and the assertion grant. Both grant types are described below. 
 
-The authorization code grant is to be used for public integrations, where you want to create an integration that can be used by any iZettle merchant, whereas the password grant is to be used when you are creating a private integration, for your own merchant account. Please note that for private integrations, this will probably change in the future and another - simpler - solution will be made available where you can create your own access token directly from your merchant dashboard without using the OAuth API.
+The authorization code grant is to be used for public integrations, where you want to create an integration that can be used by any iZettle merchant, whereas the API Key solution is to be used when you are creating a private integration, for your own merchant account.
 
 ### Authorization Code Grant
 For public integrations, you should implement the authorization code grant as described below. This will allow any user to authorize and install your integration.
