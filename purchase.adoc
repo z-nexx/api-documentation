@@ -496,9 +496,6 @@ The currently available payment types are:
 - `STORE_CREDIT`
 - `GIFTCARD`
 - `KLARNA`
-- `CUSTOM` (deprecated*)
-
-deprecated* = These payment types are no longer in use, but may appear in historic data.
 
 Payment types are added when product offerings at iZettle changes, so for forwards-compatibility it is important that clients are tolerant of receiving payments of types that are not defined upfront.
 
