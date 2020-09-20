@@ -53,11 +53,11 @@ The transaction happens only when the merchant has nominated and verified a new 
 PAYOUT::: A payout to the merchant's bank account.
 FAILED_PAYOUT::: A previous PAYOUT transaction has failed and is voided by this transaction (money going back to the merchant's liquid account at iZettle).
 CASHBACK::: Money given to a merchant to retroactively adjust the card payment fee rate.
-CASHBACK_PAYOUT::: (deprecated) Direct payout of a cashback, effectively circumventing the normal flow via the liquid account.
-VOUCHER_ACTIVATION::: Used when activating a voucher (money is inserted to the merchant's fee discount account).
+CASHBACK_PAYOUT::: (deprecated*) Direct payout of a cashback, effectively circumventing the normal flow via the liquid account.
+VOUCHER_ACTIVATION::: Used when activating a voucher (money is inserted to the merchant's fee discount account). These transactions will never appear in the `LIQUID` account.
 EMONEY_TRANSFER::: An internal transfer between two merchants' iZettle accounts. Only used in Sweden.
-TELL_FRIEND::: Money given to a merchant for recommending iZettle.
-FROZEN_FUNDS::: In the event of a chargeback initiated by the issuing bank, funds will be removed from the merchant liquid account and marked as frozen, to cover the chargeback. 
+TELL_FRIEND::: (deprecated*) Money given to a merchant for recommending iZettle.
+FROZEN_FUNDS::: In the event of a chargeback initiated by the issuing bank, funds will be removed from the merchant liquid account and marked as frozen, to cover the chargeback.
 If the chargeback is later revoked, the money will be returned to the merchants liquid account with a new, positive, transaction of the same type, effectively voiding the initial
 FROZEN_FUNDS transaction.
 FEE_DISCOUNT_REVOCATION::: An internal reclaim of outstanding fee discount money if the customer has not consumed the discount within a certain time frame. As these funds are reclaimed from a special fee discount account, the transaction will not be visible on the liquid account.
@@ -67,18 +67,20 @@ ADVANCE::: References the cash advance given by iZettle to a merchant.
 A cash advance is a type of financing that is offered to merchant's based on their sales history. The advance is paid back with monthly down payments.
 ADVANCE_DOWNPAYMENT::: A down payment on a previously paid out cash advance.
 ADVANCE_FEE_DOWNPAYMENT::: References the netting of a cash advance fee.
-SUBSCRIPTION_CHARGE::: References a subscription charge (e.g. for the Kassaregister service).
 INVOICE_PAYMENT::: References an invoice payment.
 INVOICE_PAYMENT_FEE::: References an invoice payment fee.
 PAYMENT::: References an alternative, third-party, payment method where iZettle handles the funds.
 PAYMENT_FEE::: References the fee for a third-party payment method.
 ADJUSTMENT::: References a bookkeeping adjustment.
 
+deprecated* = These transaction types are no longer in use, but may appear in historic data.
+
 start:: A start point in time, limiting the result set (inclusive). Formatted as an ISO 8601 string.
 end:: An end point in time, limiting the result set (exclusive). Formatted as an ISO 8601 string.
 limit (optional):: Limit the result set to X number of results.
 offset (optional):: Offset the result set by X number of results.
-        
+
+
 #### Permissions Required
 `READ:FINANCE`
 
