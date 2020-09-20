@@ -21,40 +21,83 @@ The Product Library API implements the following scopes:
 `POST /organizations/self/products`
 
 https://products.izettle.com/swagger/#!/products/createProduct
+
+*Request payload*
+
 ```json
 {
-  "uuid": "d62f7bb0-2728-11e6-85b5-dd108c223139",
-  "categories": ["shoes","clothing"],
-  "name": "ProductName",
-  "description": "Description of product",
-  "imageLookupKeys": [
-    "x0yH8KnREeequIvGpnO8Qw.jpg"
-  ],
-  "presentation" : {
-    "imageUrl" : "https://image.izettle.com/productimage/o/x0yH8KnREeequIvGpnO8Qw.jpg",
-    "backgroundColor" : "#5f5f5f",
-    "textColor" : "#7c7c7c"
-  },
-  "variants": [
-    {
-      "uuid": "d635e450-2728-11e6-a84e-d3d803b3d694",
-      "name": "VariantName",
-      "description": "Description of variant",
-      "sku": "SKU",
-      "barcode": "Barcode",
-      "price": {
-        "amount": 10,
-        "currencyId": "SEK"
-      },
-      "costPrice": {
-        "amount": 5,
-        "currencyId": "SEK"
-      }
-    }
-  ],
-  "externalReference": "externalReference",
-  "unitName": "Kg",
-  "vatPercentage": "10"
+	"uuid": "89f9d200-fb8a-11ea-adc1-0242ac120002",
+	"name": "Jeans",
+	"description": "Description of product.",
+    "imageLookupKeys": [
+        "sTop9DEqEemOix6FMP9b9Q-JsvDJPuJEequ57W3cjPOlg.png"
+    ],
+	"variants": [
+		{
+			"uuid": "1a590664-fb8a-11ea-adc1-0242ac120002",
+			"name": "small",
+			"description": "Small pants.",
+			"sku": "SKU",
+			"barcode": "Barcode",
+			"price": {
+				"amount": 10000,
+				"currencyId": "SEK"
+			},
+			"costPrice": {
+				"amount": 500,
+				"currencyId": "SEK"
+			},
+			"vatPercentage": "25",
+			"options": [
+				{
+					"name": "SizeOption",
+					"value": "small"
+				}
+			]
+		},
+		{
+			"uuid": "1ee20a82-fb8a-11ea-adc1-0242ac120002",
+			"name": "medium",
+			"description": "Medium pants.",
+			"sku": "SKU",
+			"barcode": "Barcode",
+			"price": {
+				"amount": 10000,
+				"currencyId": "SEK"
+			},
+			"costPrice": {
+				"amount": 500,
+				"currencyId": "SEK"
+			},
+			"vatPercentage": "25",
+			"options": [
+				{
+					"name": "SizeOption",
+					"value": "medium"
+				}
+			]
+		}
+	],
+	"vatPercentage": "25",
+	"variantOptionDefinitions": {
+		"definitions": [
+			{
+				"name": "SizeOption",
+				"properties": [
+					{
+						"value": "small"
+					},
+					{
+						"value": "medium"
+					}
+				]
+			}
+		]
+	},
+	"category": {
+		"uuid": "1ee20a82-fb8a-11ea-adc1-0242ac120002",
+		"name": "clothing"
+	}
 }
 ```
 ---
@@ -67,9 +110,41 @@ https://products.izettle.com/swagger/#!/products/updateFullProduct
 Updates a product entity using JSON merge patch (https://tools.ietf.org/html/rfc7396). This means that only included fields will be changed: null values removes the field on the target entity, and other values updates the field.
 Uses same format as Create product
 
----
+*Request payload*
 
 ```json
-
+{
+	"description": "New description.",
+	"variants": [
+		{
+			"uuid": "1a590664-fb8a-11ea-adc1-0242ac120002",
+			"name": "New name"
+		},
+		{
+			"uuid": "1a590664-fb8a-11ea-adc1-0242ac120002"
+		}
+	]
+}
 ```
 ---
+
+#### Fetching product categories
+
+`GET /organizations/self/categories/v2`
+
+https://products.izettle.com/swagger#/categoriesv2/getProductTypes
+
+Returns all the product categories.
+
+*Response*
+
+```json
+{
+  "categories": [
+    {
+      "uuid": "1ee20a82-fb8a-11ea-adc1-0242ac120002",
+      "name": "clothing"
+    }
+  ]
+}
+```
