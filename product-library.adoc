@@ -29,9 +29,9 @@ https://products.izettle.com/swagger/#!/products/createProduct
 	"uuid": "89f9d200-fb8a-11ea-adc1-0242ac120002",
 	"name": "Jeans",
 	"description": "Description of product.",
-    "imageLookupKeys": [
-        "sTop9DEqEemOix6FMP9b9Q-JsvDJPuJEequ57W3cjPOlg.png"
-    ],
+    "presentation": {
+        "imageUrl": "https://image.izettletest.com/product/sTop9DEqEemOix6FMP9b9Q-JsvDJPuJEequ57W3cjPOlg.png"
+    },
 	"variants": [
 		{
 			"uuid": "1a590664-fb8a-11ea-adc1-0242ac120002",

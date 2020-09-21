@@ -16,7 +16,12 @@ Update documentation.
 
 #### Product Library API
 
-- Update example request under the "Create product" section to reflect the new `category` and `variantOptionDefinitions` fields.
+- Update example request under the "Create product" section to reflect the new `category` & `variantOptionDefinitions` fields.
   The `category` field replaces the old `categories` field. Now, a product may only have one category assigned to it. To create a new product category, simply provide a new UUID (v1) value on the `category.uuid` field when creating or updating a product.
+- The `imageLookupKeys` field have been deprecated in favour for `presentation.imageUrl`.
 - Add example request under the "Update product" section.
 - Add docs about Product Categories.
+
+#### Image API
+
+- Replace usage of `imageLookupKey` with `imageUrls` in the docs. The `imageLookupKey` has been deprecated, and instead the fully qualified URLs should be used.
