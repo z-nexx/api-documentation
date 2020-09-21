@@ -1,0 +1,27 @@
+## iZettle API Changelog
+
+### 2020-09-21
+
+Update documentation.
+
+#### Finance API
+
+- Remove the `SUBSCRIPTION_CHARGE` transaction type. This transaction was incorrectly added to the documentation.
+- Clarify that `VOUCHER_ACTIVATION` does not appear on the liquid account.
+- Mark the `TELL_FRIEND` transaction type as deprecated. This transaction type was removed in late 2018, but may show up in transactions prior to that.
+
+#### Purchase API
+
+- Remove the `CUSTOM` payment type. This payment type does not exist anymore and has not been in use.
+
+#### Product Library API
+
+- Update example request under the "Create product" section to reflect the new `category` & `variantOptionDefinitions` fields.
+  The `category` field replaces the old `categories` field. Now, a product may only have one category assigned to it. To create a new product category, simply provide a new UUID (v1) value on the `category.uuid` field when creating or updating a product.
+- The `imageLookupKeys` field have been deprecated in favour for `presentation.imageUrl`.
+- Add example request under the "Update product" section.
+- Add docs about Product Categories.
+
+#### Image API
+
+- Replace usage of `imageLookupKey` with `imageUrls` in the docs. The `imageLookupKey` has been deprecated, and instead the fully qualified URLs should be used.
