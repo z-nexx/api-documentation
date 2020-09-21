@@ -26,78 +26,78 @@ https://products.izettle.com/swagger/#!/products/createProduct
 
 ```json
 {
-	"uuid": "89f9d200-fb8a-11ea-adc1-0242ac120002",
-	"name": "Jeans",
-	"description": "Description of product.",
+  "uuid": "89f9d200-fb8a-11ea-adc1-0242ac120002",
+  "name": "Jeans",
+  "description": "Description of product.",
     "presentation": {
         "imageUrl": "https://image.izettletest.com/product/sTop9DEqEemOix6FMP9b9Q-JsvDJPuJEequ57W3cjPOlg.png"
     },
-	"variants": [
-		{
-			"uuid": "1a590664-fb8a-11ea-adc1-0242ac120002",
-			"name": "small",
-			"description": "Small pants.",
-			"sku": "SKU",
-			"barcode": "Barcode",
-			"price": {
-				"amount": 10000,
-				"currencyId": "SEK"
-			},
-			"costPrice": {
-				"amount": 500,
-				"currencyId": "SEK"
-			},
-			"vatPercentage": "25",
-			"options": [
-				{
-					"name": "SizeOption",
-					"value": "small"
-				}
-			]
-		},
-		{
-			"uuid": "1ee20a82-fb8a-11ea-adc1-0242ac120002",
-			"name": "medium",
-			"description": "Medium pants.",
-			"sku": "SKU",
-			"barcode": "Barcode",
-			"price": {
-				"amount": 10000,
-				"currencyId": "SEK"
-			},
-			"costPrice": {
-				"amount": 500,
-				"currencyId": "SEK"
-			},
-			"vatPercentage": "25",
-			"options": [
-				{
-					"name": "SizeOption",
-					"value": "medium"
-				}
-			]
-		}
-	],
-	"vatPercentage": "25",
-	"variantOptionDefinitions": {
-		"definitions": [
-			{
-				"name": "SizeOption",
-				"properties": [
-					{
-						"value": "small"
-					},
-					{
-						"value": "medium"
-					}
-				]
-			}
-		]
-	},
-	"category": {
-		"uuid": "1ee20a82-fb8a-11ea-adc1-0242ac120002",
-		"name": "clothing"
-	}
+  "variants": [
+    {
+      "uuid": "1a590664-fb8a-11ea-adc1-0242ac120002",
+      "name": "small",
+      "description": "Small pants.",
+      "sku": "SKU",
+      "barcode": "Barcode",
+      "price": {
+        "amount": 10000,
+        "currencyId": "SEK"
+      },
+      "costPrice": {
+        "amount": 500,
+        "currencyId": "SEK"
+      },
+      "vatPercentage": "25",
+      "options": [
+        {
+          "name": "SizeOption",
+          "value": "small"
+        }
+      ]
+    },
+    {
+      "uuid": "1ee20a82-fb8a-11ea-adc1-0242ac120002",
+      "name": "medium",
+      "description": "Medium pants.",
+      "sku": "SKU",
+      "barcode": "Barcode",
+      "price": {
+        "amount": 10000,
+        "currencyId": "SEK"
+      },
+      "costPrice": {
+        "amount": 500,
+        "currencyId": "SEK"
+      },
+      "vatPercentage": "25",
+      "options": [
+        {
+          "name": "SizeOption",
+          "value": "medium"
+        }
+      ]
+    }
+  ],
+  "vatPercentage": "25",
+  "variantOptionDefinitions": {
+    "definitions": [
+      {
+        "name": "SizeOption",
+        "properties": [
+          {
+            "value": "small"
+          },
+          {
+            "value": "medium"
+          }
+        ]
+      }
+    ]
+  },
+  "category": {
+    "uuid": "1ee20a82-fb8a-11ea-adc1-0242ac120002",
+    "name": "clothing"
+  }
 }
 ```
 ---
@@ -114,16 +114,16 @@ Uses same format as Create product
 
 ```json
 {
-	"description": "New description.",
-	"variants": [
-		{
-			"uuid": "1a590664-fb8a-11ea-adc1-0242ac120002",
-			"name": "New name"
-		},
-		{
-			"uuid": "1a590664-fb8a-11ea-adc1-0242ac120002"
-		}
-	]
+  "description": "New description.",
+  "variants": [
+    {
+      "uuid": "1a590664-fb8a-11ea-adc1-0242ac120002",
+      "name": "New name"
+    },
+    {
+      "uuid": "1ee20a82-fb8a-11ea-adc1-0242ac120002"
+    }
+  ]
 }
 ```
 ---
