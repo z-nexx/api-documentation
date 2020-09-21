@@ -41,5 +41,3 @@ https://image.izettle.com/swagger
 Where `o` is a `2000*2000px` and `L` is a `560*560px` image.
 
 To apply this uploaded image on a product, use the first URL provided in the `imageUrls` array.
-
-A test environment will be made available soon, in the mean time integrators with production credentials can try out the API by creating their own iZettle account.
