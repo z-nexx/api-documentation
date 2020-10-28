@@ -1,18 +1,21 @@
-# iZettle Go HTTP API
+# iZettle Go API Beta Documentation
 
-These are the documentation pages for the iZettle Go APIs.
+These are the beta documentation pages for the iZettle Go APIs.
 
- [Frequently Asked Questions](faq.adoc)
+-   [Changelog](CHANGELOG.adoc)
+-   [Frequently Asked Questions](faq.adoc)
 
 ## APIs
- - [OAuth](authorization.adoc)
- - [Finance](finance.adoc)
- - [Purchase](purchase.adoc)
- - [Product Library](product-library.adoc)
- - [Inventory](inventory.adoc)
- - [Image](image.adoc)
- - [Pusher (Webhooks)](pusher.adoc)
- - [Giftcard](giftcard.adoc)
+
+-   [OAuth](authorization.adoc)
+-   [Finance](finance.adoc)
+-   [Purchase](purchase.adoc)
+-   [Product Library](product-library.adoc)
+-   [Inventory](inventory.adoc)
+-   [Image](image.adoc)
+-   [Pusher (Webhooks)](pusher.adoc)
+-   [Giftcard](giftcard.adoc)
 
 ## Credentials
+
 Apply for API credentials here: https://developer.izettle.com/register

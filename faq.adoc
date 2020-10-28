@@ -1,11 +1,7 @@
-image::https://d15n4q3o4x3svq.cloudfront.net/assets/tutorials/curl/api-a397cc184c5622fb5130af1b7baf149d.png[API,150,150]
-
 = Frequently Asked Questions
 
 
 ****
-This document contains answers to the most asked questions, if you have questions that are not answered
-in this document please refer to using our api-team email address: api@izettle.com .
 If you want to apply to receive access to our APIs, please visit the https://developer.izettle.com/register[iZettle Developer Portal].
 ****
 '''
@@ -67,12 +63,6 @@ See https://github.com/iZettle/api-documentation/blob/master/authorization.adoc[
 
 '''
 
-=== https://github.com/iZettle/api-documentation/blob/master/finance.adoc[Finance]
-===== More to come...
-'''
-=== https://github.com/iZettle/api-documentation/blob/master/purchase.adoc[Purchase]
-===== More to come...
-'''
 === https://github.com/iZettle/api-documentation/blob/master/product-library.adoc[Product Library]
 ====
 **I'm using your API to create Products on Izettle, i have a problem when assigning images to products, i used the image API to create an image and it's working, but how to assign this image to the product i'm creating?**
@@ -100,9 +90,6 @@ imageLookupKeys: ["Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg”]
       “imageUrl”: "https://image.izettle.com/v2/images/o/Ta0Tx5E6RpujkDRXheIb5w-sS5EEMfKEee84eojOmcEnQ.jpeg"
 --
 '''
-=== https://github.com/iZettle/api-documentation/blob/master/inventory.adoc[Inventory]
-===== More to come...
-'''
 
 === https://github.com/iZettle/api-documentation/blob/master/image.adoc[Image Service]
 **I cannot upload images using byte arrays.**
@@ -122,7 +109,3 @@ and not:
 "imageData": "[-1, -40, -1, -31, 0, 24, 69, 120, 105]"
 --
 ====
-'''
-=== Web hooks
-
-===== More to come...
