@@ -147,7 +147,7 @@ The Authorization OAuth2 API will return errors when retrieving and refreshing a
 ```
 HTTP 400 Bad Request
 {
-    "error": "invalid_request",
+    "error": "invalid_grant",
     "error_description": "invalid refresh_token"
 }
 ```
