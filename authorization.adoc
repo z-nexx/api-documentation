@@ -9,9 +9,9 @@ https://oauth.izettle.com
 ---
 
 ### Introduction
-The OAuth API implements the OAuth 2.0 Authorization Framework (https://tools.ietf.org/html/rfc6749[RFC 6749]). For an external integrator, there are two different grant types that are of interest, the authorization code grant and the password grant. Both grant types are described below. 
+The OAuth API implements the OAuth 2.0 Authorization Framework (https://tools.ietf.org/html/rfc6749[RFC 6749]). For an external integrator, there are two different grant types that are of interest, the authorization code grant and the assertion grant. Both grant types are described below. 
 
-The authorization code grant is to be used for public integrations, where you want to create an integration that can be used by any iZettle merchant, whereas the password grant is to be used when you are creating a private integration, for your own merchant account. Please note that for private integrations, this will probably change in the future and another - simpler - solution will be made available where you can create your own access token directly from your merchant dashboard without using the OAuth API.
+The authorization code grant is to be used for public integrations, where you want to create an integration that can be used by any iZettle merchant, whereas the assertion grant is to be used when you are creating a private integration, for your own merchant account.
 
 ### Authorization Code Grant
 For public integrations, you should implement the authorization code grant as described below. This will allow any user to authorize and install your integration.
@@ -75,24 +75,47 @@ The response will contain both the access and refresh tokens:
 }
 ```
 
-### Password Grant
-For private integrations, you should implement the password grant as described below. This will allow you to retrieve an access token for your iZettle account.
+### Assertion Grant
+For private integrations, you should implement the assertion grant as described below. This will allow you to retrieve an access token using an API key provided to you by the iZettle account owner.
 
-*NOTE:* In the future, this process will probably change, allowing you to create an personal access token directly in your merchant dashboard.
+#### Create API key
+The iZettle account owner can create an API key from within the https://my.izettle.com/apps/api-keys[iZettle Backoffice]. The API key is provided in the form of a JWT string and serves as the assertion that the integrator will use when calling the assertion grant. *It is of highest importance that this key is being kept secure!*
+
+In order to make it as easy as possible for the account owner to create the API key, the integrator can provide a deep link to the API key creation page, with prepopulated fields:
+
+`https://my.izettle.com/apps/api-keys?name=<key-name>&scopes=<scopes>`
+
+*Key-name* should be the name under which the API key is stored. Keep it short but descriptive. One good practice is to use the integration name as the key name, e.g "WooCommerce Sync".
+
+*Scopes* should contain the list of needed scopes, separated by space, e.g "READ:PURCHASE+READ:FINANCE"
 
 #### Request an access token
-**RFC 6749:** https://tools.ietf.org/html/rfc6749#section-4.3.2[4.3.2. Access Token Request]
-To obtain an access token that can be used to call our APIs, you will have to send your client credentials, as well as your iZettle username and password to the OAuth service, like this:
+**RFC 7521:** https://tools.ietf.org/html/rfc7521#section-4.1[4.1. Using Assertions as Authorization Grants]
+To obtain an access token that can be used to call our APIs, you will have to send the provided API key (JWT assertion), as well the `client_id` defined in that assertion.
+
+The `client_id` can be provided by the account owner together with the API key as it is displayed after the account owner has created the key, but the best user experience is to only ask for the API key and then extract the `client_id` from the JWT structure that represents the key. See https://jwt.io/ for information on how to decode a JWT structure.
+
+The `grant_type` should be set to `urn:ietf:params:oauth:grant-type:jwt-bearer`, indicating that this is a JWT assertion.
 
 ```
 curl -s -d \
-'grant_type=password&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&client_secret=IZSEC7356b8a1-75ac-4336-970b-bef63cd219c1&username=user@email.com&password=mypassword' \
+'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&client_id=c55de605-48b6-42ef-b69e-cd9d14ded15a&assertion=eyJraWQiOiIwIiwidHlwIjoiS....' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
 'https://oauth.izettle.com/token'
 ```
 
-You will get a normal access and refresh token back, which you can then start using. 
+You will get a normal access token back, which you can then start using. There is no refresh token provided in the response for this grant. To get a new access token once the previous one has expired, you will just call the assertion grant again with the same API key.
 
+#### Optional tracking when using assertions
+Since an assertion is not connected to an OAuth application, the usage cannot be tracked by iZettle in the same way as for normal OAuth based integrations. This can be a problem in cases where the developer of an integration and iZettle has a partnership and where the usage of that integration should be attributed to the developer.
+
+To solve this, we provide two tracking entry points. They both require the developer to register the integration as a normal OAuth application at https://developer.izettle.com.
+
+When requesting an access token using an assertion, a developer that wants to be attributed should use the `client_id` of the created OAuth application instead of the `client_id` of the assertion itself in the `/token` request.
+
+When performing API calls, a custom header `X-iZettle-Application-Id` should be set, with the `client_id` of the application.
+
+These two measures will ensure that the usage of the integration can be attributed to the integrator.
 
 ### Refreshing an access token
 **RFC 6749:** https://tools.ietf.org/html/rfc6749#section-6[6. Refreshing an Access Token]
@@ -124,7 +147,7 @@ The Authorization OAuth2 API will return errors when retrieving and refreshing a
 ```
 HTTP 400 Bad Request
 {
-    "error": "invalid_request",
+    "error": "invalid_grant",
     "error_description": "invalid refresh_token"
 }
 ```
@@ -159,3 +182,14 @@ Note: Not all services are not currently using the error code `ACCESS_TOKEN_EXPI
     "organizationUuid": "ab305d54-75b4-431b-adb2-eb6b9e546013"
 }
 ```
+
+#### Disconnect application from organization
+An external integration that want to disconnect its connection to an iZettle organization can do so by calling the following endpoint, providing the issued access token for that organization. This can be useful when a user disconnects outside of iZettle, to clean up registered webhooks and remove access for the external integration.
+
+```
+DELETE /application-connections/self
+Authorization: Bearer <access token>
+```
+
+##### Response
+This endpoint will respond with a `204 No Content` HTTP code.

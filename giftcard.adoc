@@ -41,6 +41,6 @@ uuid:: The UUID of the giftcard
 The `giftcards` data type only contain a few generic parameters such as `uuid`, `amount` and `dates`.
 
 - `created` the date that the giftcard was created
-- `validTo` once this date has passed the giftcard will be expired and can no longer be used
+- `validTo` once this date has passed the giftcard will be expired and can no longer be used. If the value is null, giftcard will never expire.
 - `initialAmount` the amount that the giftcard was initially loaded with
 - `remainingAmount` current balance of the giftcard
