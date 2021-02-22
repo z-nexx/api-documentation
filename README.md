@@ -18,8 +18,8 @@ These are the beta documentation pages for the iZettle Go APIs.
 
 ## Credentials
 
-Apply for API credentials here: https://developer.izettle.com/register
+Apply for API credentials here: https://developer.zettle.com/register
 
 ## Get help
-Contact our [Integrations team](mailto:api@izettle.com) for more information. 
+Contact our [Integrations team](mailto:api@zettle.com) for more information. 
 
